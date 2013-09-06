@@ -1,0 +1,48 @@
+@import "bs3/bootstrap.less";
+@import "bs3/mixins.less";
+@import "bs3/variables.less";
+
+.big-column(@columns) {
+  .make-md-column(@columns);
+  .make-lg-column(@columns);
+}
+.big-offset(@columns) {
+  .make-md-column-offset(@columns);
+  .make-lg-column-offset(@columns);
+}
+
+#container {
+  .container-fixed();
+  background-color: @gray-lighter;
+  #page-wrap { background-color: white; }
+}
+
+#page-footer {
+  .make-row();
+  .big-column(12);
+}
+
+.page {
+  .make-row();
+  .big-offset(1);
+  .big-column(10);
+}
+
+#student-home {
+  li {
+    .big-column(6);
+  }
+
+  #discover-learning-style,
+  #understand-learning-style {
+    display: block;
+    text-align: left;
+    padding: 3em;
+    .btn-primary();
+    text-decoration: none;
+  }
+}
+
+#student-test {
+  padding-top: 70px; // for the fixed navbar
+}

@@ -1,0 +1,30 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="navbar-header">
+    <a class="navbar-brand" href="#">Learning Styles: Test</a>
+  </div>
+
+  <ul class="nav navbar-nav">
+    <li class="active"><a href="#">Dimensions of Learning</a></li>
+    <li><a href="#">STAR</a></li>
+  </ul>
+</nav>
+
+<header>
+<ol class="breadcrumb">
+  <li><a href="/">Learning Styles Manager</a></li>
+  <li><a href="/student/">Student</a></li>
+  <li class="active">Discover your learning style</li>
+</ol>
+</header>
+
+<%= form_tag("/student/test", method: "post") do %>
+<h2 class="page-header">Dimensions of learning</h2>
+for each question in dol
+
+
+<h2 class="page-header">STAR</h2>
+
+<h2 class="page-header">You're finished!</h2>
+<button class="btn btn-primary btn-lg" type="submit">Submit</button>
+
+<% end %>
