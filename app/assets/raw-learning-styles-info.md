@@ -112,7 +112,7 @@ My friends always come to me for emotional support and advice	INTER
 
 
 # AusIdentities
-Every (1, 5, 9)  is E/I, every (2, 6, 10) is S/N, every (3, 7, 11) is T/F and every (4, 8, 12) is J/P.
+Every (1, 5, 9) is E/I, every (2, 6, 10) is S/N, every (3, 7, 11) is T/F and every (4, 8, 12) is J/P.
 
 When viewing, choose which out of E/I, S/N, T/F and J/P is most frequent in each column. Then your AusIdentity is the 4 letters which contains a certain two letters:
  - NT is an Eagle

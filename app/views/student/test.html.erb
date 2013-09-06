@@ -1,28 +1,60 @@
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-  <div class="navbar-header">
-    <a class="navbar-brand" href="#">Learning Styles: Test</a>
-  </div>
+
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="page-navbar">
+  <a href="/student"><h1 class="navbar-brand">Learning Styles</h1></a>
 
   <ul class="nav navbar-nav">
-    <li class="active"><a href="#">Dimensions of Learning</a></li>
-    <li><a href="#">STAR</a></li>
+    <li class="active"><a href="#intro">Introduction</a></li>
+    <li><a href="#test-dol">DOL</a></li>
+    <li><a href="#test-star">STAR</a></li>
+    <li><a href="#test-gmi">GMI</a></li>
+    <li><a href="#test-aui">AusIdentities</a></li>
   </ul>
 </nav>
 
-<header>
-<ol class="breadcrumb">
-  <li><a href="/">Learning Styles Manager</a></li>
-  <li><a href="/student/">Student</a></li>
-  <li class="active">Discover your learning style</li>
-</ol>
-</header>
+<section id="intro">
+  <div class="jumbotron">
+    <div class="container">
+      <h1>Learning Styles Test</h1>
+      <p>Below you will find four multiple-choice tests that will ask you general questions to assess your learning traits.
+      After finishing the test, your answers will be processed and your learning profile will be generated.</p>
+      <small>Note: Your learning profile is updated each time you complete the test.</small>
+    </div>
+  </div>
+</section>
 
 <%= form_tag("/student/test", method: "post") do %>
-<h2 class="page-header">Dimensions of learning</h2>
+<section id="test-dol">
+<h2>DOL (Dimensions of Learning)</h2>
+radioButtons
 for each question in dol
+  show question
+  show radioButtons
+</section>
 
+<section id="test-star">
+<h2>STAR (Spacial Tactile Auditory Reading)</h2>
+foreach question in star
+  show question
+  foreach answer of question.answers
+    show answer as radiobutton
+</section>
 
-<h2 class="page-header">STAR</h2>
+<section id="test-gmi">
+<h2>GMI (Gardner's Multiple Intelligences)</h2>
+radiobuttons
+foreach statement in gmi
+  show statement
+  show radiobuttons
+</section>
+
+<section id="test-aui">
+<h2>AusIdentities</h2>
+foreach question in aui
+  show question
+  foreach answer in question.answers
+    show answer as radiobutton
+</section>
+
 
 <h2 class="page-header">You're finished!</h2>
 <button class="btn btn-primary btn-lg" type="submit">Submit</button>

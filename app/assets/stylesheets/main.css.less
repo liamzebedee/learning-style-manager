@@ -2,6 +2,9 @@
 @import "bs3/mixins.less";
 @import "bs3/variables.less";
 
+// Utility mixins
+// ==============
+
 .big-column(@columns) {
   .make-md-column(@columns);
   .make-lg-column(@columns);
@@ -11,21 +14,30 @@
   .make-lg-column-offset(@columns);
 }
 
+// Padding is so the navbar doesn't overlay the anchored sections
+.anchor-padding-for-navbar {
+  padding-top: @navbar-height;
+  margin-top: -@navbar-height;
+}
+
+// Structure
+// =========
+
 #container {
   .container-fixed();
-  background-color: @gray-lighter;
-  #page-wrap { background-color: white; }
-}
-
-#page-footer {
-  .make-row();
-  .big-column(12);
-}
-
-.page {
-  .make-row();
-  .big-offset(1);
-  .big-column(10);
+  padding: 0px;
+  #page-wrap {
+    padding: 15px;
+    .make-row();
+    .big-offset(1);
+    .big-column(10);
+  }
+  #page-footer-wrap {
+    margin-top: 3em;
+    padding: 1em;
+    background-color: @gray-lighter;
+    .big-column(12);
+  }
 }
 
 #student-home {
@@ -34,7 +46,7 @@
   }
 
   #discover-learning-style,
-  #understand-learning-style {
+    #understand-learning-style {
     display: block;
     text-align: left;
     padding: 3em;
@@ -44,5 +56,21 @@
 }
 
 #student-test {
-  padding-top: 70px; // for the fixed navbar
+  @navbar-height: 50px;
+  .navbar h1 { margin: 0px; }
+  padding-top: @navbar-height;
+  #intro  {
+    .anchor-padding-for-navbar;
+    .jumbotron { margin-bottom: 0px; }
+  }
+
+  form {
+    section {
+      .anchor-padding-for-navbar;
+      h2 { .page-header }
+    }
+    section:first-child {
+      background: blue;
+    }
+  }
 }
