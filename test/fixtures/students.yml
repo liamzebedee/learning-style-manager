@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyText
+  year: 1
+  eq_id: MyText
+
+two:
+  name: MyText
+  year: 1
+  eq_id: MyText

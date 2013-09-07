@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  spatial: 9.99
+  tactil: 9.99
+  auditory: 9.99
+  reading: 9.99
+  raw_results: MyText
+
+two:
+  spatial: 9.99
+  tactil: 9.99
+  auditory: 9.99
+  reading: 9.99
+  raw_results: MyText

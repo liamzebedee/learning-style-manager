@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  raw_results: MyText
+  letters: MyString
+  animal: 1
+
+two:
+  raw_results: MyText
+  letters: MyString
+  animal: 1

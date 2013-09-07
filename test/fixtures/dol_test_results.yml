@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  habits_ranked: MyText
+  raw_results: MyText
+
+two:
+  habits_ranked: MyText
+  raw_results: MyText
