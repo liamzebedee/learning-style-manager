@@ -13,3 +13,11 @@ end
 def is_teacher
   false
 end
+
+# Returns a Hash containing the student's name, Education Queensland identifier and year level
+def get_student_details
+  { :name => "Liam Edwards-Playne", :eq_id => "xxxx00", :year => 00 }
+end
+
+class AuthException < Exception
+end
