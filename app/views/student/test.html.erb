@@ -59,10 +59,19 @@
 
 <section id="test-star">
 <h2>STAR (Spacial Tactile Auditory Reading)</h2>
-foreach question in star
-  show question
-  foreach answer of question.answers
-    show answer as radiobutton
+<% StarTestResult::QUESTIONS.each_with_index do |(question, options), question_i| %>
+<div id="<%= "star_#{question_i}" %>">
+  <h3><%= question %></h3>
+  <div class="options">
+  <% options.each_with_index do |option, option_i| %>
+    <div class="radio">
+    <%= radio_button_tag("star[#{question_i}]".to_sym, "#{option_i}") %>
+    <%= label_tag("star[#{question_i}][#{option_i}]".to_sym, option) %>
+    </div>
+  <% end %>
+  </div>
+</div>
+<% end %>
 </section>
 
 <section id="test-aui">
