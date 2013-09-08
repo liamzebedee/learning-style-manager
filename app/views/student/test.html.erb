@@ -5,8 +5,8 @@
   <ul class="nav navbar-nav">
     <li class="active"><a href="#intro">Introduction</a></li>
     <li><a href="#test-dol">DOL</a></li>
-    <li><a href="#test-star">STAR</a></li>
     <li><a href="#test-gmi">GMI</a></li>
+    <li><a href="#test-star">STAR</a></li>
     <li><a href="#test-aui">AusIdentities</a></li>
   </ul>
 </nav>
@@ -22,13 +22,39 @@
   </div>
 </section>
 
-<%= form_tag("/student/test", method: "post") do %>
+<%= form_for @learning_test, url:"/student/test", method: "post" do |test| %>
 <section id="test-dol">
 <h2>DOL (Dimensions of Learning)</h2>
-radioButtons
-for each question in dol
-  show question
-  show radioButtons
+<% DolTestResult::QUESTIONS.each_with_index do |question,question_i| %>
+<div id="<%= "dol_#{question_i}" %>">
+  <h3><%= question %></h3>
+  <div class="options">
+  <% DolTestResult::OPTIONS.each_with_index do |option, option_i| %>
+    <div class="radio">
+    <%= radio_button_tag("dol[#{question_i}]".to_sym, "#{option_i}") %>
+    <%= label_tag("dol[#{question_i}][#{option_i}]".to_sym, option) %>
+    </div>
+  <% end %>
+  </div>
+</div>
+<% end %>
+</section>
+
+<section id="test-gmi">
+<h2>GMI (Gardner's Multiple Intelligences)</h2>
+<% GmiTestResult::QUESTIONS.each_with_index do |(question, intelligence), question_i| %>
+<div id="<%= "gmi_#{question_i}" %>">
+  <h3><%= question %></h3>
+  <div class="options">
+  <% GmiTestResult::OPTIONS.each_with_index do |option, option_i| %>
+    <div class="radio">
+    <%= radio_button_tag("gmi[#{question_i}]".to_sym, "#{option_i}") %>
+    <%= label_tag("gmi[#{question_i}][#{option_i}]".to_sym, option) %>
+    </div>
+  <% end %>
+  </div>
+</div>
+<% end %>
 </section>
 
 <section id="test-star">
@@ -37,14 +63,6 @@ foreach question in star
   show question
   foreach answer of question.answers
     show answer as radiobutton
-</section>
-
-<section id="test-gmi">
-<h2>GMI (Gardner's Multiple Intelligences)</h2>
-radiobuttons
-foreach statement in gmi
-  show statement
-  show radiobuttons
 </section>
 
 <section id="test-aui">
@@ -57,6 +75,6 @@ foreach question in aui
 
 
 <h2 class="page-header">You're finished!</h2>
-<button class="btn btn-primary btn-lg" type="submit">Submit</button>
+<button class="btn btn-primary btn-lg" value="submit" name="commit" type="submit">Submit</button>
 
 <% end %>
