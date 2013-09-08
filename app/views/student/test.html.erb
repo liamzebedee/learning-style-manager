@@ -76,10 +76,19 @@
 
 <section id="test-aui">
 <h2>AusIdentities</h2>
-foreach question in aui
-  show question
-  foreach answer in question.answers
-    show answer as radiobutton
+<% AuiTestResult::QUESTIONS.each_with_index do |(question, options), question_i| %>
+<div id="<%= "aui_#{question_i}" %>">
+  <h3><%= question %></h3>
+  <div class="options">
+  <% options.each_with_index do |option, option_i| %>
+    <div class="radio">
+    <%= radio_button_tag("aui[#{question_i}]".to_sym, "#{option_i}") %>
+    <%= label_tag("aui[#{question_i}][#{option_i}]".to_sym, option) %>
+    </div>
+  <% end %>
+  </div>
+</div>
+<% end %>
 </section>
 
 
