@@ -26,12 +26,12 @@
 <section id="test-dol">
 <h2>DOL (Dimensions of Learning)</h2>
 <% DolTestResult::QUESTIONS.each_with_index do |question,question_i| %>
-<div id="<%= "dol_#{question_i}" %>">
+<div id="<%= "dol_#{question_i}" %>" class="question">
   <h3><%= question %></h3>
   <div class="options">
   <% DolTestResult::OPTIONS.each_with_index do |option, option_i| %>
     <div class="radio">
-    <%= radio_button_tag("dol[#{question_i}]".to_sym, "#{option_i}") %>
+    <%= radio_button_tag("dol[#{question_i}]".to_sym, "#{option_i}", false, :required => true) %>
     <%= label_tag("dol[#{question_i}][#{option_i}]".to_sym, option) %>
     </div>
   <% end %>
@@ -43,12 +43,12 @@
 <section id="test-gmi">
 <h2>GMI (Gardner's Multiple Intelligences)</h2>
 <% GmiTestResult::QUESTIONS.each_with_index do |(question, intelligence), question_i| %>
-<div id="<%= "gmi_#{question_i}" %>">
+<div id="<%= "gmi_#{question_i}" %>" class="question">
   <h3><%= question %></h3>
   <div class="options">
   <% GmiTestResult::OPTIONS.each_with_index do |option, option_i| %>
     <div class="radio">
-    <%= radio_button_tag("gmi[#{question_i}]".to_sym, "#{option_i}") %>
+    <%= radio_button_tag("gmi[#{question_i}]".to_sym, "#{option_i}", false, :required => true) %>
     <%= label_tag("gmi[#{question_i}][#{option_i}]".to_sym, option) %>
     </div>
   <% end %>
@@ -60,12 +60,12 @@
 <section id="test-star">
 <h2>STAR (Spacial Tactile Auditory Reading)</h2>
 <% StarTestResult::QUESTIONS.each_with_index do |(question, options), question_i| %>
-<div id="<%= "star_#{question_i}" %>">
+<div id="<%= "star_#{question_i}" %>" class="question">
   <h3><%= question %></h3>
   <div class="options">
   <% options.each_with_index do |option, option_i| %>
     <div class="radio">
-    <%= radio_button_tag("star[#{question_i}]".to_sym, "#{option_i}") %>
+    <%= radio_button_tag("star[#{question_i}]".to_sym, "#{option_i}", false, :required => true) %>
     <%= label_tag("star[#{question_i}][#{option_i}]".to_sym, option) %>
     </div>
   <% end %>
@@ -77,12 +77,12 @@
 <section id="test-aui">
 <h2>AusIdentities</h2>
 <% AuiTestResult::QUESTIONS.each_with_index do |(question, options), question_i| %>
-<div id="<%= "aui_#{question_i}" %>">
+<div id="<%= "aui_#{question_i}" %>" class="question">
   <h3><%= question %></h3>
   <div class="options">
   <% options.each_with_index do |option, option_i| %>
     <div class="radio">
-    <%= radio_button_tag("aui[#{question_i}]".to_sym, "#{option_i}") %>
+    <%= radio_button_tag("aui[#{question_i}]".to_sym, "#{option_i}", false, :required => true) %>
     <%= label_tag("aui[#{question_i}][#{option_i}]".to_sym, option) %>
     </div>
   <% end %>
