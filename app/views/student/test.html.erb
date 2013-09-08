@@ -22,7 +22,7 @@
   </div>
 </section>
 
-<%= form_for @learning_test, url:"/student/test", method: "post" do |test| %>
+<%= form_tag("/student/test", method: "post") do %>
 <section id="test-dol">
 <h2>DOL (Dimensions of Learning)</h2>
 <% DolTestResult::QUESTIONS.each_with_index do |question,question_i| %>
