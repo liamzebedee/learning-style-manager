@@ -42,13 +42,13 @@
   }
 }
 
-#student-home {
+#student-home,
+#teacher-home {
   li {
     .big-column(6);
   }
 
-  #discover-learning-style,
-    #understand-learning-style {
+  a {
     display: block;
     text-align: left;
     padding: 3em;
@@ -57,7 +57,8 @@
   }
 }
 
-#student-test {
+#student-test,
+#teacher-student-results {
   @navbar-height: 50px;
   .navbar h1 { margin: 0px; }
   padding-top: @navbar-height;
@@ -66,13 +67,19 @@
     .jumbotron { margin-bottom: 0px; }
   }
 
-  form {
-    section {
-      .anchor-padding-for-navbar;
-      h2 { .page-header }
-    }
-    section:first-child {
-      background: blue;
-    }
+  section {
+    .anchor-padding-for-navbar;
+    h2 { .page-header }
   }
+  section:first-child {
+    background: blue;
+  }
+}
+
+#teacher-student-results {
+
+}
+
+#home {
+  form { .big-column(3); }
 }

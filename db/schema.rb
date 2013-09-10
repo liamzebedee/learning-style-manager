@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130907224704) do
+ActiveRecord::Schema.define(version: 20130910100425) do
 
   create_table "aui_test_results", force: true do |t|
     t.text     "raw_results"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20130907224704) do
     t.integer  "animal"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "learning_test_result_id"
   end
 
   create_table "dol_test_results", force: true do |t|
@@ -26,6 +27,7 @@ ActiveRecord::Schema.define(version: 20130907224704) do
     t.text     "raw_results"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "learning_test_result_id"
   end
 
   create_table "gmi_test_results", force: true do |t|
@@ -33,11 +35,17 @@ ActiveRecord::Schema.define(version: 20130907224704) do
     t.text     "raw_results"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "learning_test_result_id"
   end
 
   create_table "learning_test_results", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "student_id"
+    t.integer  "dol_test_result_id"
+    t.integer  "gmi_test_result_id"
+    t.integer  "aui_test_result_id"
+    t.integer  "star_test_result_id"
   end
 
   create_table "star_test_results", force: true do |t|
@@ -48,6 +56,7 @@ ActiveRecord::Schema.define(version: 20130907224704) do
     t.text     "raw_results"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "learning_test_result_id"
   end
 
   create_table "students", force: true do |t|

@@ -7,16 +7,19 @@ class ApplicationController < ActionController::Base
 end
 
 def is_student
+  # Check session for student object
   true
 end
 
 def is_teacher
+  # Check session for teacher object
   false
 end
 
-# Returns a Hash containing the student's name, Education Queensland identifier and year level
+# Returns a Hash containing the student's name, Education Queensland identifier
 def get_student_details
-  { :name => "Liam Edwards-Playne", :eq_id => "xxxx00", :year => 00 }
+  # get session data
+  { :name => "Liam Edwards-Playne", :eq_id => "xxxx00", :year => 11 }
 end
 
 class AuthException < Exception

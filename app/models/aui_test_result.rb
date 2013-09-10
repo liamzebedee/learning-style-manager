@@ -245,4 +245,6 @@ class AuiTestResult < ActiveRecord::Base
     }
 
   serialize :raw_results, Hash
+  # letters: string
+  # animal: integer
 end

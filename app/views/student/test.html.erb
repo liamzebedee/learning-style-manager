@@ -1,10 +1,9 @@
-
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="page-navbar">
   <a href="/student"><h1 class="navbar-brand">Learning Styles</h1></a>
 
   <ul class="nav navbar-nav">
     <li class="active"><a href="#intro">Introduction</a></li>
-    <li><a href="#test-dol">DOL</a></li>
+    <li><a href="#test-dol">DOL5</a></li>
     <li><a href="#test-gmi">GMI</a></li>
     <li><a href="#test-star">STAR</a></li>
     <li><a href="#test-aui">AusIdentities</a></li>
@@ -23,8 +22,9 @@
 </section>
 
 <%= form_tag("/student/test", method: "post") do %>
-<section id="test-dol">
-<h2>DOL (Dimensions of Learning)</h2>
+<section id="test-dol" class="test">
+<h2>DOL5 (Dimensions of Learning)</h2>
+<div class="questions">
 <% DolTestResult::QUESTIONS.each_with_index do |question,question_i| %>
 <div id="<%= "dol_#{question_i}" %>" class="question">
   <h3><%= question %></h3>
@@ -38,10 +38,12 @@
   </div>
 </div>
 <% end %>
+</div>
 </section>
 
-<section id="test-gmi">
+<section id="test-gmi" class="test">
 <h2>GMI (Gardner's Multiple Intelligences)</h2>
+<div class="questions">
 <% GmiTestResult::QUESTIONS.each_with_index do |(question, intelligence), question_i| %>
 <div id="<%= "gmi_#{question_i}" %>" class="question">
   <h3><%= question %></h3>
@@ -55,10 +57,12 @@
   </div>
 </div>
 <% end %>
+</div>
 </section>
 
-<section id="test-star">
+<section id="test-star" class="test">
 <h2>STAR (Spacial Tactile Auditory Reading)</h2>
+<div class="questions">
 <% StarTestResult::QUESTIONS.each_with_index do |(question, options), question_i| %>
 <div id="<%= "star_#{question_i}" %>" class="question">
   <h3><%= question %></h3>
@@ -72,10 +76,12 @@
   </div>
 </div>
 <% end %>
+</div>
 </section>
 
-<section id="test-aui">
+<section id="test-aui" class="test">
 <h2>AusIdentities</h2>
+<div class="questions">
 <% AuiTestResult::QUESTIONS.each_with_index do |(question, options), question_i| %>
 <div id="<%= "aui_#{question_i}" %>" class="question">
   <h3><%= question %></h3>
@@ -89,6 +95,7 @@
   </div>
 </div>
 <% end %>
+</div>
 </section>
 
 

@@ -19,8 +19,19 @@ class DolTestResult < ActiveRecord::Base
     "Remaining open to continuous learning. Do I learn from my experiences? Am I able to admit sometimes that I don’t know?"
   ]
 
+  after_initialize :initialise_habits_ranked
+
   # Habits ranked according to the OPTIONS with numbers of QUESTIONS
   # e.g. habits_ranked[:lacks_awareness] = [1, 5, 6]
+  # lacks_awareness understand_meaning developing_strategies becoming_a_habit
   serialize :habits_ranked, Hash
   serialize :raw_results, Hash
+
+  private
+  def initialise_habits_ranked
+    habits_ranked[:lacks_awareness] = []
+    habits_ranked[:understand_meaning] = []
+    habits_ranked[:developing_strategies] = []
+    habits_ranked[:becoming_a_habit] = []
+  end
 end
