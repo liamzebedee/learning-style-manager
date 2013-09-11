@@ -41,6 +41,7 @@ class StudentController < ApplicationController
     student = Student.find_or_create_by_eq_id('ledwa7')
     test = student.learning_test_result = LearningTestResult.new
 
+
     # Dimensions of Learning
     # ----------------------
     dol = test.dol_test_result = DolTestResult.new
@@ -58,6 +59,7 @@ class StudentController < ApplicationController
         dol.habits_ranked[:becoming_a_habit] << habit
       end
     end
+
 
     # AusIdentities
     # -------------
@@ -109,14 +111,37 @@ class StudentController < ApplicationController
     aui.animal = AuiTestResult::AUS_IDENTITIES.index("Wombat") if aui.letters.match   /[SJ]/
 
 
+    # Gardner's Multiple Intelligences
+    # --------------------------------
     gmi = test.gmi_test_result = GmiTestResult.new
-    gmi.raw_results = params['aui']
+    gmi.raw_results = params['gmi']
+    # Iterate through all the questions
+    # Increment gmi_tally for the particular intelligence the question is testing
+    gmi_tally = {
+      GmiTestResult::LINGUISTIC => 0,
+      GmiTestResult::MATHEMATICAL => 0,
+      GmiTestResult::MUSICAL => 0,
+      GmiTestResult::KINESTHETIC => 0,
+      GmiTestResult::SPATIAL => 0,
+      GmiTestResult::INTERPERSONAL => 0,
+      GmiTestResult::INTRAPERSONAL => 0
+    }
+    gmi.raw_results.each do |question_num, option|
+      intelligence_category = GmiTestResult::QUESTIONS.values[question_num.to_i]
+      gmi_tally[intelligence_category] += option.to_i
+    end
+    # Sort gmi_tally_sort by the tally into a hash in descending order
+    gmi.intelligences_ranked = Hash[gmi_tally.sort_by { |intelligence_type, tally| tally }.reverse!]
 
+
+
+    # Spatial Tactile Auditory Reading
+    # --------------------------------
     star = test.star_test_result = StarTestResult.new
     star.raw_results = params['star']
 
 
-    @p = aui.inspect
+    @p = star.inspect
     render 'student/results'
     #redirect_to 'student/results'
   rescue AuthException
