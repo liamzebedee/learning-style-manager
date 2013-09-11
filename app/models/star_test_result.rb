@@ -181,9 +181,11 @@ class StarTestResult < ActiveRecord::Base
       "I say \"it's great to hear your voice!\"",
       "I send an email or text to say hello"
       ]
-
-
   }
 
   serialize :raw_results, Hash
+  # spatial  :decimal
+  # tactile  :decimal
+  # auditory :decimal
+  # reading  :decimal
 end

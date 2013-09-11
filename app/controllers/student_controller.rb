@@ -139,11 +139,37 @@ class StudentController < ApplicationController
     # --------------------------------
     star = test.star_test_result = StarTestResult.new
     star.raw_results = params['star']
+    # Tally the responses for each letter
+    star_tally = { :S => 0, :T => 0, :A => 0, :R => 0 }
+    star.raw_results.each do |question_num, option|
+      case option.to_i
+      when 0
+        star_tally[:S] += 1
+      when 1
+        star_tally[:T] += 1
+      when 2
+        star_tally[:A] += 1
+      when 3
+        star_tally[:R] += 1
+      end
+    end
+    # Calculate the percentages
+    star_tally.each do |letter, total|
+      # Get a floating point between 0 and 1 to two decimal places
+      percentage = (total.to_f / StarTestResult::QUESTIONS.length).round(2)
+      case letter
+      when :S
+        star.spatial = percentage
+      when :T
+        star.tactile = percentage
+      when :A
+        star.auditory = percentage
+      when :R
+        star.reading = percentage
+      end
+    end
 
-
-    @p = star.inspect
-    render 'student/results'
-    #redirect_to 'student/results'
+    redirect_to 'student/results'
   rescue AuthException
   end
 
