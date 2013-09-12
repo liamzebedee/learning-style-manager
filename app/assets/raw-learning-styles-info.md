@@ -63,7 +63,6 @@ Find it easiest to remember	faces		things I have done		names		the spelling of th
 I think I can tell someone is lying because..	they avoid looking at you		the vibes I get from them		their voice changes		the language they use avoids the question
 When I'm meeting with an old friend..	I say "it's great to see you!"		I give them a hug or a handshake		I say "it's great to hear your voice!"		I send an email or text to say hello
 
-
 # GMI (Gardner's Multiple Intelligences)
 Each statement is of a particular intelligence (Linguistic, Mathematical, Musical, Bodily/Kinesthetic, Spatial, Interpersonal, Intrapersonal), and are ranked according to:
  1. Mostly Disagree
@@ -110,6 +109,14 @@ Singing makes me feel happy	MUSICAL
 I am happy spending time alone	INTRA
 My friends always come to me for emotional support and advice	INTER
 
+## Traits
+Linguistic: you learn through words and language.
+Mathematical: you learn through numbers and logic.
+Musical: you learn through music, sounds and rhythm.
+Kinesthetic: you learn through physical experience and movement, touch and feel.
+Visual: you learn through pictures, shapes, images, 3D space.
+Interpersonal: you learn through hunman contact, communications, co-operation and teamwork.
+Intrapersonal: you learn through self-reflection and self-discovery.
 
 # AusIdentities
 Every (1, 5, 9) is E/I, every (2, 6, 10) is S/N, every (3, 7, 11) is T/F and every (4, 8, 12) is J/P.
@@ -121,7 +128,7 @@ When viewing, choose which out of E/I, S/N, T/F and J/P is most frequent in each
  - SJ is a Wombat
 
 ## Survey
-Do you enjoy having lots of friends, or just a few special friends  Lots of friends.  A few special friends.
+Do you enjoy having lots of friends, or just a few special friends?  Lots of friends.  A few special friends.
 Do you prefer to talk about facts or possibilities?  Facts  Possibilities
 Do you sometimes consider other peoples' feelings before your own?  No, very rarely  Yes, quite often.
 Do you like to make lists of things to do?  Yes, quite often.  No, not very often.
