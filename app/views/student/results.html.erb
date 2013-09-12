@@ -14,7 +14,9 @@
   <div class="jumbotron">
     <div class="container">
       <h1>Overview</h1>
-
+      <p>You are mainly a <strong><%= @star_first %> learner</strong>.
+      To learn more about your learning style, read <a href="/docs/STAR-<%= @star_first.capitalize %>.pdf">this document</a> on
+      learning new ideas, making study aids and performing well.</p>
     </div>
   </div>
 </section>
@@ -26,7 +28,7 @@
   <h3><%= DolTestResult::OPTIONS[category_i] %></h3>
   <ul>
     <% habits.each do |habit_i| %>
-    <li>#<%= habit_i.to_i %> — <%= DolTestResult::QUESTIONS[habit_i.to_i] %></li>
+    <li>#<%= habit_i.to_i + 1 %> — <%= DolTestResult::QUESTIONS[habit_i.to_i] %></li>
     <% end %>
   </ul>
 <% end %>
@@ -34,12 +36,22 @@
 
 <section id="results-gmi">
 <h2>Gardner's Multiple Intelligences <small><a href="/docs/GMI-Summary.pdf">Learn more</a></small></h2>
+<p>Your top two intelligences are <strong><%= @gmi_top_first %></strong> and <strong><%= @gmi_top_second %></strong>.</p>
 </section>
 
 <section id="results-star">
-<h2>Spatial Tactile Auditory Reasoning <small><a href="/docs/STAR-Overview.pdf">Learn more</a></small></h2>
+<h2>Spatial Tactile Auditory Reading <small><a href="/docs/STAR-Overview.pdf">Learn more</a></small></h2>
+<p>You are mainly a <strong><%= @star_first %> learner</strong>.</p>
+<ul id="star-graphic">
+<% @star.star_ranked.each do |intelligence, percentage| %>
+<li>
+  <h3><%= intelligence.to_s.capitalize %></h3>
+  <h4><%= (percentage * 100).floor %>%</h4>
+</li>
+<% end %>
 </section>
 
 <section id="results-aui">
 <h2>AusIdentities <small><a href="/docs/AUI-Summary.pdf">Learn more</a></small></h2>
+<p>Your AusIdentity is the <strong><%= @aui_animal %></strong>.</p>
 </section>

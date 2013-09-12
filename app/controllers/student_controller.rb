@@ -136,7 +136,7 @@ class StudentController < ApplicationController
     end
     # Sort gmi_tally_sort by the tally into a hash in descending order
     gmi.intelligences_ranked = Hash[gmi_tally.sort_by { |intelligence_type, tally| tally }.reverse!]
-
+    gmi.save!
 
 
     # Spatial Tactile Auditory Reading
@@ -158,20 +158,24 @@ class StudentController < ApplicationController
       end
     end
     # Calculate the percentages
+    star_ranked = { :spatial => 0, :tactile => 0, :auditory => 0, :reading => 0 }
     star_tally.each do |letter, total|
       # Get a floating point between 0 and 1 to two decimal places
       percentage = (total.to_f / StarTestResult::QUESTIONS.length).round(2)
       case letter
       when :S
-        star.spatial = percentage
+        star_ranked[:spatial] = percentage
       when :T
-        star.tactile = percentage
+        star_ranked[:tactile] = percentage
       when :A
-        star.auditory = percentage
+        star_ranked[:auditory] = percentage
       when :R
-        star.reading = percentage
+        star_ranked[:reading] = percentage
       end
     end
+    star.star_ranked = star_ranked
+    star.save!
+
 
     test.save
     student.learning_test_result = test
@@ -190,7 +194,18 @@ class StudentController < ApplicationController
       render "student/results-error"
     else
       @test = student.learning_test_result
+
       @dol = @test.dol_test_result
+
+      @gmi = @test.gmi_test_result
+      @gmi_top_first = GmiTestResult::INTELLIGENCES[@gmi.intelligences_ranked.keys[0]]
+      @gmi_top_second = GmiTestResult::INTELLIGENCES[@gmi.intelligences_ranked.keys[1]]
+
+      @star = @test.star_test_result
+      @star_first = @star.star_ranked.keys[0].to_s
+
+      @aui = @test.aui_test_result
+      @aui_animal = AuiTestResult::AUS_IDENTITIES[@aui.animal]
 
       render "student/results"
     end

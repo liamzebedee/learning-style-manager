@@ -7,6 +7,8 @@ class GmiTestResult < ActiveRecord::Base
   INTERPERSONAL = 5
   INTRAPERSONAL = 6
 
+  INTELLIGENCES = %w{ Linguistic Mathematical Musical Kinesthetic Spatial Interpersonal Intrapersonal }
+
   OPTIONS = ["Mostly Disagree", "Slightly Disagree", "Slightly Agree", "Mostly Agree"]
   QUESTIONS = {
     "I can play a musical instrument" => MUSICAL,

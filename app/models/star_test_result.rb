@@ -184,8 +184,6 @@ class StarTestResult < ActiveRecord::Base
   }
 
   serialize :raw_results, Hash
-  # spatial  :decimal
-  # tactile  :decimal
-  # auditory :decimal
-  # reading  :decimal
+  # { :spatial => 0.25, :tactile => 0.25, :auditory => 0.25, :reading => 0.25 }
+  serialize :star_ranked, Hash
 end

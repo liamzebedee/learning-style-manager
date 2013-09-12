@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130911085508) do
+ActiveRecord::Schema.define(version: 20130912070954) do
 
   create_table "aui_test_results", force: true do |t|
     t.text     "raw_results"
@@ -49,14 +49,11 @@ ActiveRecord::Schema.define(version: 20130911085508) do
   end
 
   create_table "star_test_results", force: true do |t|
-    t.decimal  "spatial"
-    t.decimal  "tactile"
-    t.decimal  "auditory"
-    t.decimal  "reading"
     t.text     "raw_results"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "learning_test_result_id"
+    t.text     "star_ranked"
   end
 
   create_table "students", force: true do |t|
