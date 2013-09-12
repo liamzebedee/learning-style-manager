@@ -20,6 +20,6 @@ This app is specifically adapted for the IT systems of Education Queensland, how
 
 ## Screenshots
 ![Student Dashboard](/screenshots/student-dash.png "Student Dashboard")
-![Student Learning Tests](/screenshots/student-test.jpg "Student Learning Tests")
-![Student Results](/screenshots/student-results.jpg "Student Results")
+![Student Learning Tests](/screenshots/student-test.png "Student Learning Tests")
+![Student Results](/screenshots/student-results.png "Student Results")
 ![Teacher View for Student Results](/screenshots/teacher-view-student-results.png "Teacher View for Student Results")
