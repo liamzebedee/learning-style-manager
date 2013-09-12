@@ -3,7 +3,9 @@
 
   <ul class="nav navbar-nav">
     <li class="active"><a href="#intro">Introduction</a></li>
-    <li><a href="#year-X">Year X</a></li>
+    <li><a href="#year-10">Year 10</a></li>
+    <li><a href="#year-11">Year 11</a></li>
+    <li><a href="#year-12">Year 12</a></li>
   </ul>
 </nav>
 
@@ -11,14 +13,19 @@
   <div class="jumbotron">
     <div class="container">
       <h1>Student Results</h1>
-      <p>Below you will find </p>
+      <p>Below you will find an overview of the results for each student categorised by year level.
+      You will find information on their <a href="/docs/DOL5-Summary.pdf">habits of mind</a>,
+      top two of <a href="/docs/GMI-Summary.pdf">Gardner's Multiple Intelligences</a>,
+      ratios of the <a href="/docs/STAR-Overview.pdf">STAR learning styles</a>
+      and lastly their <a href="/docs/AUI-Summary.pdf">AusIdentity</a>.</p>
     </div>
   </div>
 </section>
 
-foreach year in students
-<section id="year-x">
-<h2>Year x</h2>
+<% (@max_graduating_year..@min_graduating_year).each_with_index do |grad_year, grad_year_i| %>
+<% year = grad_year_i + 10 %>
+<section id="year-<%= year %>">
+<h2>Year <%= year %></h2>
 <table class="table table-striped">
   <thead><tr>
     <th>Name</th>
@@ -30,16 +37,36 @@ foreach year in students
   </tr>
   </thead>
   <tbody>
-  foreach student in yearx
+  <% Student.where(year: grad_year).each do |student| %>
     <tr>
-    <td>name</td>
-    <td>eqid</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  end
+    <td><%= student.name %></td>
+    <td><%= student.eq_id %></td>
+    <div class="modal fade" id="<%= student.eq_id %>-dol-habits" tabindex="-1" role="dialog"><div class="modal-dialog"><div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">DOL5 Habits for <strong><%= student.name %></strong></h4>
+      </div>
+      <div class="modal-body">
+        <% student.learning_test_result.dol_test_result.habits_ranked.values.each_with_index do |habits, category_i| %>
+          <h3><%= DolTestResult::OPTIONS[category_i] %></h3>
+          <ul>
+            <% habits.each do |habit_i| %>
+            <li>#<%= habit_i.to_i + 1 %> — <%= DolTestResult::QUESTIONS[habit_i.to_i] %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+    </div></div></div>
+    <td><a data-toggle="modal" href="#<%= student.eq_id %>-dol-habits">View habits of mind</a></td>
+    <td><%= student.learning_test_result.gmi_test_result.top_intelligences.join ', ' %></td>
+    <td>
+      <p><% student.learning_test_result.star_test_result.star_ranked.each do |letter, percentage| %>
+      <abbr title="<%= letter.capitalize %>"><%= (percentage * 100).floor %>%</abbr>
+      <% end %></p>
+    </td>
+    <td><%= student.learning_test_result.aui_test_result.animal_name %></td>
+  <% end %>
   </tbody>
 </table>
 </section>
-end
+<% end %>

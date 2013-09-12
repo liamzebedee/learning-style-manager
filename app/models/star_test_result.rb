@@ -113,7 +113,7 @@ class StarTestResult < ActiveRecord::Base
       "visualise the worst-case scenarios",
       "can't sit still, fiddle and move around constantly",
       "talk over in my head what worries me most",
-      "don't have effort detail in the notes or they are vague"
+      "don't have effort detail in the notes or they are vague" # WHAT IS THIS
       ],
     "I feel especially connected to others because of" => [
       "how they look",

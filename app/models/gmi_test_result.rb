@@ -58,4 +58,8 @@ class GmiTestResult < ActiveRecord::Base
 
   serialize :intelligences_ranked, Hash
   serialize :raw_results, Hash
+
+  def top_intelligences
+    [INTELLIGENCES[self.intelligences_ranked.keys[0]], INTELLIGENCES[self.intelligences_ranked.keys[1]]]
+  end
 end

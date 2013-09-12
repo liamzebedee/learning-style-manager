@@ -40,9 +40,9 @@ class AuiTestResult < ActiveRecord::Base
       ],
     "Do you see yourself as practical with good common sense, or as insightful with a good imagination?" => [
       "Practical, with a good common sense.",
-      "Imaginative, with a good imagination",
+      "Insightful, with a good imagination",
       ],
-    "If you disagree with what someone has said, are you more likely to argue with them, or keep quit?" => [
+    "If you disagree with what someone has said, are you more likely to argue with them, or keep quiet?" => [
       "Argue with them",
       "Keep quiet",
       ],
@@ -247,4 +247,8 @@ class AuiTestResult < ActiveRecord::Base
   serialize :raw_results, Hash
   # letters: string
   # animal: integer
+
+  def animal_name
+    AUS_IDENTITIES[self.animal]
+  end
 end

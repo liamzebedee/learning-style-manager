@@ -198,8 +198,6 @@ class StudentController < ApplicationController
       @dol = @test.dol_test_result
 
       @gmi = @test.gmi_test_result
-      @gmi_top_first = GmiTestResult::INTELLIGENCES[@gmi.intelligences_ranked.keys[0]]
-      @gmi_top_second = GmiTestResult::INTELLIGENCES[@gmi.intelligences_ranked.keys[1]]
 
       @star = @test.star_test_result
       @star_first = @star.star_ranked.keys[0].to_s
