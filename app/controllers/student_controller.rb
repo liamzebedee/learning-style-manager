@@ -33,13 +33,8 @@ class StudentController < ApplicationController
   def results_update
     do_auth
     # Get student (create if necessary)
-    #student_details = get_student_details
-    #student = Student.find_or_create_by_eq_id(student_details[:eq_id])
-    #student.name = student_details[:name]
-
-    # Setup the test results
-    student = Student.find_or_create_by_eq_id('ledwa7')
-    test = student.learning_test_result = LearningTestResult.new
+    student = Student.find_or_create_by(eq_id: 'ledwa7')
+    test = LearningTestResult.new
 
 
     # Dimensions of Learning
@@ -47,18 +42,26 @@ class StudentController < ApplicationController
     dol = test.dol_test_result = DolTestResult.new
     dol.raw_results = params['dol']
     # Classify habits
+    dol_habits_ranked = {
+      :lacks_awareness => [],
+      :understand_meaning => [],
+      :developing_strategies => [],
+      :becoming_a_habit => []
+    }
     dol.raw_results.each do |(habit, rank)|
       case rank.to_i
       when 0
-        dol.habits_ranked[:lacks_awareness] << habit
+        dol_habits_ranked[:lacks_awareness] << habit
       when 1
-        dol.habits_ranked[:understand_meaning] << habit
+        dol_habits_ranked[:understand_meaning] << habit
       when 2
-        dol.habits_ranked[:developing_strategies] << habit
+        dol_habits_ranked[:developing_strategies] << habit
       when 3
-        dol.habits_ranked[:becoming_a_habit] << habit
+        dol_habits_ranked[:becoming_a_habit] << habit
       end
     end
+    dol.habits_ranked = dol_habits_ranked
+    dol.save!
 
 
     # AusIdentities
@@ -109,6 +112,7 @@ class StudentController < ApplicationController
     aui.animal = AuiTestResult::AUS_IDENTITIES.index("Kangaroo") if aui.letters.match /[SP]/
     aui.animal = AuiTestResult::AUS_IDENTITIES.index("Dolphin") if aui.letters.match  /[NF]/
     aui.animal = AuiTestResult::AUS_IDENTITIES.index("Wombat") if aui.letters.match   /[SJ]/
+    aui.save!
 
 
     # Gardner's Multiple Intelligences
@@ -169,7 +173,11 @@ class StudentController < ApplicationController
       end
     end
 
-    redirect_to 'student/results'
+    test.save
+    student.learning_test_result = test
+    student.save
+
+    redirect_to '/student/results'
   rescue AuthException
   end
 
@@ -177,7 +185,15 @@ class StudentController < ApplicationController
     do_auth
     @page_title = "Results | Learning Style Manager"
     @page_id = 'student-results'
-    render "student/results"
+    student = Student.find_by(eq_id: 'ledwa7')
+    if student.learning_test_result == nil
+      render "student/results-error"
+    else
+      @test = student.learning_test_result
+      @dol = @test.dol_test_result
+
+      render "student/results"
+    end
   rescue AuthException
   end
 end

@@ -1,3 +1,45 @@
-<h1>Student#results</h1>
-<p>Find me in app/views/student/results.html.erb</p>
-<%= @p %>
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="page-navbar">
+  <a href="/student"><h1 class="navbar-brand">Learning Styles</h1></a>
+
+  <ul class="nav navbar-nav">
+    <li class="active"><a href="#overview">Overview</a></li>
+    <li><a href="#results-dol">DOL5</a></li>
+    <li><a href="#results-gmi">GMI</a></li>
+    <li><a href="#results-star">STAR</a></li>
+    <li><a href="#results-aui">AusIdentities</a></li>
+  </ul>
+</nav>
+
+<section id="overview">
+  <div class="jumbotron">
+    <div class="container">
+      <h1>Overview</h1>
+
+    </div>
+  </div>
+</section>
+
+<section id="results-dol">
+<h2>Dimensions of Learning <small><a href="/docs/DOL5-Summary.pdf">Learn more</a></small></h2>
+<p>Below are the habits of mind that you have ranked into various categories.</p>
+<% @dol.habits_ranked.values.each_with_index do |habits, category_i| %>
+  <h3><%= DolTestResult::OPTIONS[category_i] %></h3>
+  <ul>
+    <% habits.each do |habit_i| %>
+    <li>#<%= habit_i.to_i %> — <%= DolTestResult::QUESTIONS[habit_i.to_i] %></li>
+    <% end %>
+  </ul>
+<% end %>
+</section>
+
+<section id="results-gmi">
+<h2>Gardner's Multiple Intelligences <small><a href="/docs/GMI-Summary.pdf">Learn more</a></small></h2>
+</section>
+
+<section id="results-star">
+<h2>Spatial Tactile Auditory Reasoning <small><a href="/docs/STAR-Overview.pdf">Learn more</a></small></h2>
+</section>
+
+<section id="results-aui">
+<h2>AusIdentities <small><a href="/docs/AUI-Summary.pdf">Learn more</a></small></h2>
+</section>
