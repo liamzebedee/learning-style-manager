@@ -200,7 +200,8 @@ class StudentController < ApplicationController
       @gmi = @test.gmi_test_result
 
       @star = @test.star_test_result
-      @star_first = @star.star_ranked.keys[0].to_s
+      @star_ordered = Hash[@star.star_ranked.sort_by { |letter, percentage| percentage }.reverse!]
+      @star_first = @star_ordered.keys[0].to_s
 
       @aui = @test.aui_test_result
       @aui_animal = AuiTestResult::AUS_IDENTITIES[@aui.animal]

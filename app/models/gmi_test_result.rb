@@ -38,7 +38,7 @@ class GmiTestResult < ActiveRecord::Base
 
     "To learn something new, I need to just get on and try it" => KINESTHETIC,
     "I often see clear images when I close my eyes" => SPATIAL,
-    "I don’t use my fingers when I count" => MATHEMATICAL,
+    "I don't use my fingers when I count" => MATHEMATICAL,
     "At school I love / loved music lessons" => MUSICAL,
 
     "I find ball games easy and enjoyable" => KINESTHETIC,
@@ -55,6 +55,11 @@ class GmiTestResult < ActiveRecord::Base
     "I am happy spending time alone" => INTRAPERSONAL,
     "My friends always come to me for emotional support and advice" => INTERPERSONAL
   }
+
+  QUESTIONS_PER_INTELLIGENCE = 5
+
+  # Maximum score that a person can get from the OPTIONS as values 0, 1, 2, and 3 respectively.
+  MAX_INTELLIGENCE_TALLY_SCORE = (QUESTIONS_PER_INTELLIGENCE * 3)
 
   serialize :intelligences_ranked, Hash
   serialize :raw_results, Hash

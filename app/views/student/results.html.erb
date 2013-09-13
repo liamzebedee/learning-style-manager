@@ -23,7 +23,7 @@
 
 <section id="results-dol">
 <h2>Dimensions of Learning <small><a href="/docs/DOL5-Summary.pdf">Learn more</a></small></h2>
-<p>Below are the habits of mind that you have ranked into various categories.</p>
+<p>Below are the 16 habits of mind that you have ranked into various categories.</p>
 <% @dol.habits_ranked.values.each_with_index do |habits, category_i| %>
   <h3><%= DolTestResult::OPTIONS[category_i] %></h3>
   <ul>
@@ -36,14 +36,23 @@
 
 <section id="results-gmi">
 <h2>Gardner's Multiple Intelligences <small><a href="/docs/GMI-Summary.pdf">Learn more</a></small></h2>
-<p>Your top two intelligences are <strong><%= @gmi.top_intelligences[0] %></strong> and <strong><%= @gmi.top_intelligences[1] %></strong>.</p>
+<p>Your top two intelligences are <strong><%= @gmi.top_intelligences[0] %></strong> and <strong><%= @gmi.top_intelligences[1] %></strong>.
+Below you will find all intelligence classifications and your scores for each. The higher your score, the more you tend to this style of learning.</p>
+<ul id="gmi-graphic" class="list-inline">
+<% @gmi.intelligences_ranked.each do |intelligence_i, intelligence_tally| %>
+<li>
+  <h3><%= GmiTestResult::INTELLIGENCES[intelligence_i] %></h3>
+  <!--<h4><%= ((intelligence_tally.to_f / (5*3)) * 100).floor %>%</h4>-->
+  <h4><%= intelligence_tally %>/<%= GmiTestResult::MAX_INTELLIGENCE_TALLY_SCORE %></h4>
+</li>
+<% end %>
 </section>
 
 <section id="results-star">
 <h2>Spatial Tactile Auditory Reading <small><a href="/docs/STAR-Overview.pdf">Learn more</a></small></h2>
-<p>You are mainly a <strong><%= @star_first %> learner</strong>.</p>
+<p>You are mainly a <strong><%= @star_first %> learner</strong>. Below you can see how much your learning style tends to those of the STAR framework.</p>
 <ul id="star-graphic">
-<% @star.star_ranked.each do |intelligence, percentage| %>
+<% @star_ordered.each do |intelligence, percentage| %>
 <li>
   <h3><%= intelligence.to_s.capitalize %></h3>
   <h4><%= (percentage * 100).floor %>%</h4>
