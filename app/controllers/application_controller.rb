@@ -8,17 +8,19 @@ end
 
 def is_student
   # Check session for student object
+  # session['student'] != nil
   true
 end
 
 def is_teacher
   # Check session for teacher object
+  # session['teacher'] != nil
   false
 end
 
 # Returns a Hash containing the student's name, Education Queensland identifier
 def get_student_details
-  # get session data
+  # session['student']
   { :name => "Liam Edwards-Playne", :eq_id => "xxxx00", :year => 11 }
 end
 

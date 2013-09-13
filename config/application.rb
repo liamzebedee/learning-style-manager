@@ -7,6 +7,8 @@ require 'rails/all'
 Bundler.require(:default, Rails.env)
 
 module LearningStyleManager
+  AUTH_SERVER_URL = 'http://10.41.68.100/util/auth.php'
+
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -14,10 +16,6 @@ module LearningStyleManager
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
-    # config.time_zone = 'Central Time (US & Canada)'
-
-    # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
-    # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    # config.i18n.default_locale = :de
+    config.time_zone = 'Brisbane'
   end
 end

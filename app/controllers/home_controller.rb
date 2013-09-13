@@ -6,12 +6,20 @@ class HomeController < ApplicationController
   end
 
   def login
+    username = params['username']
+    password = params['password']
+
     # Connect to authentication server and validate credentials
-    # XXX
+    # server = connect
+    # response = server.POST(params: [username, password])
+
+    reset_session # prevent session fixation
 
     # If they are a valid teacher/student, then store the data to the session
-    reset_session # prevent session fixation
-    # XXX
+    # if response['student'] != nil
+    #   thing
+    # else
+    #   thing
 
     # Now redirect to appropriate area of site
     if is_student
