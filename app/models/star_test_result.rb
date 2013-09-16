@@ -113,7 +113,7 @@ class StarTestResult < ActiveRecord::Base
       "visualise the worst-case scenarios",
       "can't sit still, fiddle and move around constantly",
       "talk over in my head what worries me most",
-      "don't have effort detail in the notes or they are vague" # WHAT IS THIS
+      "write out a detailed plan to improve and correct the situation"
       ],
     "I feel especially connected to others because of" => [
       "how they look",
@@ -167,7 +167,7 @@ class StarTestResult < ActiveRecord::Base
       "faces",
       "things I have done",
       "names",
-      "the spelling of their name"  # XXX WHAT DOES THIS MEAN?
+      "the spelling or connections of the person's name with a book"
      ],
     "I think I can tell someone is lying because" => [
       "they avoid looking at you",
