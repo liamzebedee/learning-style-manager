@@ -1,7 +1,7 @@
 class StudentController < ApplicationController
   def do_auth
     if !is_student
-      render :status => :forbidden, :text => "Forbidden fruit"
+      render :status => :forbidden, :text => "You can only see this page if you are a student."
       raise AuthException, "Student not authenticated."
     end
   end
@@ -19,13 +19,6 @@ class StudentController < ApplicationController
     @page_title = "Test yourself | Learning Style Manager"
     @page_id = 'student-test'
 
-    # student
-    # - dol[:habits_ranked][:needs_work] = [3,6,8,15]
-    # - gmi[:intelligences_ranked] = [Linguistic, Mathematical, Musical, Bodily/Kinesthetic, Spatial, Interpersonal, Intrapersonal]
-    # - star[:s] = 0.78 (decimal)
-    # - aus_identities[:animal] = :kangaroo
-    # - aus_identities[:letters] = ""
-
     render "student/test"
   rescue AuthException
   end
@@ -33,7 +26,9 @@ class StudentController < ApplicationController
   def results_update
     do_auth
     # Get student (create if necessary)
-    student = Student.find_or_create_by(eq_id: 'ledwa7')
+    student = Student.find_or_create_by(eq_id: session['student'][:eq_id])
+    student.name = session['student'][:name]
+    student.year = session['student'][:year]
     test = LearningTestResult.new
 
 
@@ -177,9 +172,9 @@ class StudentController < ApplicationController
     star.save!
 
 
-    test.save
+    test.save!
     student.learning_test_result = test
-    student.save
+    student.save!
 
     redirect_to '/student/results'
   rescue AuthException

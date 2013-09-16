@@ -2,12 +2,14 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 
+require 'uri'
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env)
 
 module LearningStyleManager
-  AUTH_SERVER_URL = 'http://10.41.68.100/util/auth.php'
+  AUTH_SERVER_URL = URI.parse('http://10.41.68.100/util/auth.php')
 
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.

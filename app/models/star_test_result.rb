@@ -14,7 +14,7 @@ class StarTestResult < ActiveRecord::Base
       "use google maps and follow the text instructions"
       ],
     "When cooking a new dish I..." => [
-      "follow a recipe on a youtube video",
+      "follow a recipe on a YouTube video",
       "follow my instinct, tasting as I cook",
       "call a friend for explanation",
       "follow the receipe given by the author"
@@ -69,7 +69,7 @@ class StarTestResult < ActiveRecord::Base
       ],
     "When choosing a new car I..." => [
       "look at the advertising and brief descriptions",
-      "test-drive what you fancy",
+      "test-drive what I fancy",
       "discuss with friends",
       "look at detailed reviews by the experts"
       ],
@@ -131,7 +131,7 @@ class StarTestResult < ActiveRecord::Base
       "show them what I mean",
       "encourage them to try and talk them through the idea as they try",
       "explain to them in different ways until they understand",
-      "write down what I mean and given them the textbook"
+      "write down what I mean and give them the textbook"
       ],
     "My main interests are" => [
       "photography or watching films or people-watching",
