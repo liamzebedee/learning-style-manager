@@ -26,9 +26,9 @@
 <% year = 12 - (cohort - Time.now.year) %>
 <section id="year-<%= year %>">
 <h2>Year <%= year %></h2>
-<table class="table table-striped">
+<table class="table table-striped sortable">
   <thead><tr>
-    <th>Name</th>
+    <th data-defaultsort="desc">Name</th>
     <th>ID</th>
     <th>DOL5</th>
     <th>GMI</th>

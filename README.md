@@ -16,6 +16,8 @@ This app is specifically adapted for the IT systems of Education Queensland, how
  - Ruby 2.0 and Ruby on Rails 4
  - CookieStore for session storage
  - Bootstrap 3 and LESS CSS for styling webpages
+ - [jqBootstrapValidation](http://reactiveraven.github.io/jqBootstrapValidation/) for form validation
+ - [bootstrap-sortable](https://github.com/drvic10k/bootstrap-sortable) for table column sorting
 
 ## Notes
  - All four tests took me just about 10 minutes to complete.
