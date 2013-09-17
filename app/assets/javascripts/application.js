@@ -14,3 +14,4 @@
 //= require_tree .
 //= require bootstrap-3.0.0
 //= require jqBootstrapValidation-1.3.6
+//= require bootstrap-sortable
