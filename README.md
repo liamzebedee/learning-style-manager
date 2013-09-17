@@ -10,7 +10,7 @@ This app is specifically adapted for the IT systems of Education Queensland, how
  2. Install Ruby on Rails 4 and other dependencies using `bundle install`.
  3. **IMPORTANT:** Run `rake secret` to generate a new secret key.
  4. Set the authentication server URL `AUTH_SERVER_URL` in `config/application.rb`.
- 5. Run `rails server`.
+ 5. Run `rails server` and access at 127.0.0.1:3000. If you want to host on port 80 (recommended), then run `rvmsudo rails server -p80`.
 
 ## Technicals
  - Ruby 2.0 and Ruby on Rails 4
