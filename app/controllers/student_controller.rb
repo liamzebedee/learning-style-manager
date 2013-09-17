@@ -10,6 +10,7 @@ class StudentController < ApplicationController
     do_auth
     @page_title = "Dashboard | Learning Style Manager"
     @page_id = 'student-home'
+    @student_name = session['student'][:name]
     render "student/index"
   rescue AuthException
   end
@@ -184,7 +185,7 @@ class StudentController < ApplicationController
     do_auth
     @page_title = "Results | Learning Style Manager"
     @page_id = 'student-results'
-    student = Student.find_by(eq_id: 'ledwa7')
+    student = Student.find_or_create_by(eq_id: session['student'][:eq_id], year: session['student'][:year], name: session['student'][:name])
     if student.learning_test_result == nil
       render "student/results-error"
     else
