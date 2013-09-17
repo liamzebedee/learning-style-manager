@@ -22,7 +22,7 @@
   </div>
 </section>
 
-<% (@current_cohort..@last_cohort).each_with_index do |cohort, cohort_i| %>
+<% (@current_cohort..@last_cohort).reverse_each.with_index do |cohort, cohort_i| %>
 <% year = 12 - (cohort - Time.now.year) %>
 <section id="year-<%= year %>">
 <h2>Year <%= year %></h2>
