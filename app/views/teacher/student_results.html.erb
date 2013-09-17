@@ -14,7 +14,7 @@
     <div class="container">
       <h1>Student Results</h1>
       <p>Below you will find an overview of the results for each student categorised by year level.
-      You will find information on their <a href="/docs/DOL5-Summary.pdf">habits of mind</a>,
+      You will find information on their <a href="/docs/DOL5-Summary.pdf">Habits of Mind (DOL5)</a>,
       top two of <a href="/docs/GMI-Summary.pdf">Gardner's Multiple Intelligences</a>,
       ratios of the <a href="/docs/STAR-Overview.pdf">STAR learning styles</a>
       and lastly their <a href="/docs/AUI-Summary.pdf">AusIdentity</a>.</p>
@@ -22,8 +22,8 @@
   </div>
 </section>
 
-<% (@max_graduating_year..@min_graduating_year).each_with_index do |grad_year, grad_year_i| %>
-<% year = grad_year_i + 10 %>
+<% (@current_cohort..@last_cohort).each_with_index do |cohort, cohort_i| %>
+<% year = 12 - (cohort - Time.now.year) %>
 <section id="year-<%= year %>">
 <h2>Year <%= year %></h2>
 <table class="table table-striped">
@@ -37,7 +37,7 @@
   </tr>
   </thead>
   <tbody>
-  <% Student.where(year: grad_year).each do |student| %>
+  <% Student.where(year: cohort).each do |student| %>
     <tr>
     <td><%= student.name %></td>
     <td><%= student.eq_id %></td>
