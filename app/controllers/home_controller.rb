@@ -13,7 +13,17 @@ class HomeController < ApplicationController
     password = params['password']
 
     # Connect to authentication server and validate credentials
-    post_response = Net::HTTP.post_form(LearningStyleManager::AUTH_SERVER_URL, 'uName'=> username, 'pWord'=> password)
+    url = LearningStyleManager::AUTH_SERVER_URL
+    req = Net::HTTP::Post.new(url)
+    req.form_data = { 'uName'=> username, 'pWord'=> password }
+    http_options = {:open_timeout => 4, :read_timeout => 4}
+    post_response = nil
+    begin
+      Net::HTTP.start(url.hostname, url.port, http_options) { |http| post_response = http.request(req) }
+    rescue Net::ReadTimeout, Net::OpenTimeout
+      render :status => :service_unavailable, :text => "We couldn't connect to the authentication server in a timely manner. Try again in a minute when the problem might be fixed."
+      return
+    end
     response = JSON.parse(post_response.body)
 
     reset_session # prevent session fixation
@@ -24,7 +34,7 @@ class HomeController < ApplicationController
         :name => response['student']['name'],
         :eq_id => response['student']['eq_id'],
         :year => response['student']['cohort']
-      }
+        }
     elsif response['teacher'] != nil
       session['teacher'] = response['teacher']
     end
