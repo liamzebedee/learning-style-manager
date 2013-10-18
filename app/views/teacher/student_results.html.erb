@@ -38,6 +38,7 @@
   </thead>
   <tbody>
   <% Student.where(year: cohort).each do |student| %>
+    <% next if student.learning_test_result.nil? %>
     <tr>
     <td><%= student.name %></td>
     <td><%= student.eq_id %></td>
