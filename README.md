@@ -1,7 +1,7 @@
 learning-style-manager
 ======================
 
-A Ruby on Rails web application to manage student learning styles (DOL, STAR, Gardner, AusIdentities), built for [QASMT](http://qasmt.eq.edu.au). Licensed under GPLv3 to Liam Edwards-Playne (and any contributors).
+A Ruby on Rails web application to manage student learning styles (DOL, STAR, Gardner, AusIdentities), built for [QASMT](http://qasmt.eq.edu.au). Copyright retained by Liam Edwards-Playne, permission must be explicitly given for use.
 
 This app is specifically adapted for the IT systems of Education Queensland, however due to the modularity of its code, it can be easily changed for any other systems. Please [contact me](http://liamz.co/contact) for more information.
 
