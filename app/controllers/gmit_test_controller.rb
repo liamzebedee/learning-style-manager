@@ -1,0 +1,2 @@
+class GmitTestController < ApplicationController
+end

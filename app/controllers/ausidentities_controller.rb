@@ -1,2 +1,0 @@
-class AusidentitiesController < ApplicationController
-end

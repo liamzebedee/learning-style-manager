@@ -1,9 +1,9 @@
 LearningStyleManager::Application.routes.draw do
   resources(:students, only: [:show]) do
-    resources :star, only: [:get, :new, :create, :show], controller: 'star'
-    resources :dol5, only: [:get, :new, :create, :show], controller: 'dol5'
-    resources :gmit, only: [:get, :new, :create, :show], controller: 'gmit'
-    resources :ausidentities, only: [:get, :new, :create, :show], controller: 'ausidentities'
+    resources :star, only: [:new, :create, :show], controller: 'star_test'
+    resources :dol5, only: [:new, :create, :show], controller: 'dol5_test'
+    resources :gmit, only: [:new, :create, :show], controller: 'gmit_test'
+    resources :ausidentities, only: [:new, :create, :show], controller: 'ausidentities_test'
     member do
       get 'dashboard', to: 'students#dashboard'
     end

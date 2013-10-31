@@ -1,0 +1,2 @@
+class AusidentitiesTestController < ApplicationController
+end
