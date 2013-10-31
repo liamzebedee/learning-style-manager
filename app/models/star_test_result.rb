@@ -13,7 +13,7 @@ class StarTestResult < ActiveRecord::Base
       "ask for spoken directions",
       "use google maps and follow the text instructions"
       ],
-    "When cooking a new dish I..." => [
+    "When cooking a new dish I..." => [
       "follow a recipe on a YouTube video",
       "follow my instinct, tasting as I cook",
       "call a friend for explanation",
