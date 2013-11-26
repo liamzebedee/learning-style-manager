@@ -14,7 +14,7 @@ class TeacherController < ApplicationController
   rescue AuthException
   end
 
-  def student_results
+  def school_results
     do_auth
     @page_title = "Student Results | Learning Style Manager"
     @page_id = 'teacher-student-results'
