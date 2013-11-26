@@ -1,3 +1,4 @@
+require 'net/protocol'
 require 'net/http'
 require 'json'
 
@@ -13,21 +14,33 @@ class HomeController < ApplicationController
     password = params['password']
 
     # Connect to authentication server and validate credentials
-    url = LearningStyleManager::AUTH_SERVER_URL
-    req = Net::HTTP::Post.new(url)
-    req.form_data = { 'uName'=> username, 'pWord'=> password }
-    http_options = {:open_timeout => 4, :read_timeout => 4}
+    req = Net::HTTP::Post.new(LearningStyleManager::AUTH_SERVER_URI)
+    req.set_form_data('uName'=> username, 'pWord'=> password)
     post_response = nil
     begin
-      Net::HTTP.start(url.hostname, url.port, http_options) { |http| post_response = http.request(req) }
-    rescue Net::ReadTimeout, Net::OpenTimeout
+      res = Net::HTTP.start('10.41.68.100', 80) do |http|
+        http.open_timeout = 4
+        http.read_timeout = 4
+        post_response = http.request(req)
+      end
+    rescue Exception => e
+      puts 'damn'
+      puts e
       render :status => :service_unavailable, :text => "We couldn't connect to the authentication server in a timely manner. Try again in a minute when the problem might be fixed."
       return
     end
-    response = JSON.parse(post_response.body)
+    
+    response = nil
+    case res
+    when Net::HTTPSuccess
+      response = JSON.parse(post_response.body)
+    else
+      render :status => :service_unavailable, :text => "We couldn't connect to the authentication server in a timely manner. Try again in a minute when the problem might be fixed."
+      return
+    end
 
     reset_session # prevent session fixation
-
+    
     # If they are a valid teacher/student, then store the data to the session
     if response['student'] != nil
       session['student'] = {

@@ -1,7 +1,64 @@
 require 'test_helper'
+require 'json'
+require 'rack'
 
 class HomeControllerTest < ActionController::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  attr_accessor :sample_logins
+
+  def setup
+    @@sample_logins = {
+      :student_login => {
+        :username => "ledwa7",
+        :password => "IdeasAreBulletproof"
+      },
+
+      :teacher_login => {
+        :username => "blair",
+        :password => "WhoLetHimOut"
+      },
+
+      :bad_login => {
+        :username => "swagmaster",
+        :password => "yolo"
+      }
+    }
+	  stub_request(:post, LearningStyleManager::AUTH_SERVER_URI_STR).
+    to_return(:body => lambda { |request|
+      data = Rack::Utils.parse_nested_query request.body
+      if data['uName'] == @@sample_logins[:student_login][:username] and data['pWord'] == @@sample_logins[:student_login][:password]
+        # Student Login
+        return '{"student": {"cohort":2014,"name":"Liam Edwards-Playne","eq_id":"ledwa7"}}'
+        
+      elsif data['uName'] == @@sample_logins[:teacher_login][:username] and data['pWord'] == @@sample_logins[:teacher_login][:password]
+        # Teacher Login
+        return '{"teacher":{}}'
+        
+      else
+      	# Bad login
+      	return '{"error":1}'
+      end
+    })
+  end
+  
+  test "should get index" do
+    get :index
+    assert_response :success
+  end
+  
+  test "should successfully login a student" do
+  	post :login, username: @@sample_logins[:student_login][:username], password: @@sample_logins[:student_login][:password]
+  	assert_not_nil session['student']
+  end
+  
+  test "should successfully login a teacher" do
+  	post :login, username: @@sample_logins[:teacher_login][:username], password: @@sample_logins[:teacher_login][:password]
+  	assert_not_nil session['teacher']
+  end
+  
+  test "should fail to login given bad credentials" do
+  	post :login, username: @@sample_logins[:bad_login][:username], password: @@sample_logins[:bad_login][:password]
+  	# FIX this may be bad for future versions
+  	assert_nil(session['teacher'])
+  	assert_nil(session['student'])
+  end
 end
