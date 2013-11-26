@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '4.0.1'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
@@ -34,8 +34,17 @@ end
 
 gem 'json'
 
-gem 'multi_json', '1.7.7'
+gem 'multi_json'
 
+# These are so we can generate Rails guides locally like so:
+# $ rake doc:guides
+gem 'redcarpet'
+gem 'nokogiri'
+gem 'RedCloth'
+
+# For testing the login process on EQ's external servers
+# XXX webmock might not be needed in the future
+gem 'webmock'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
