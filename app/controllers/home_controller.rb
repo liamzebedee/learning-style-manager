@@ -49,4 +49,9 @@ class HomeController < ApplicationController
       return
     end
   end
+  
+  def logout
+  	reset_session
+  	redirect_to "/"
+  end
 end
