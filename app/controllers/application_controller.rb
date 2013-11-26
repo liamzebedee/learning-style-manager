@@ -16,5 +16,9 @@ def is_teacher
   session['teacher'] != nil
 end
 
+def is_logged_in
+  is_student or is_teacher
+end
+
 class AuthException < Exception
 end
