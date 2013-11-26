@@ -13,7 +13,7 @@ This app is specifically adapted for the IT systems of Education Queensland, how
  5. Run `rails server` and access at `127.0.0.1:3000` — run in **production** mode only. If you want to host on port 80 (recommended), then run `rvmsudo rails server -p80`.
 
 ## Technicals
- - Ruby 1.9 and Ruby on Rails 3/4
+ - Ruby 2.0 and Ruby on Rails 4
  - CookieStore for session storage
  - Bootstrap 3 and LESS CSS for styling webpages
  - [jqBootstrapValidation](http://reactiveraven.github.io/jqBootstrapValidation/) for form validation
