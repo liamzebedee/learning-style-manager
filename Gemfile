@@ -44,7 +44,9 @@ gem 'RedCloth'
 
 # For testing the login process on EQ's external servers
 # XXX webmock might not be needed in the future
-gem 'webmock'
+group :test do
+  gem 'webmock'
+end
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

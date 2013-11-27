@@ -24,8 +24,6 @@ class HomeController < ApplicationController
         post_response = http.request(req)
       end
     rescue Exception => e
-      puts 'damn'
-      puts e
       render :status => :service_unavailable, :text => "We couldn't connect to the authentication server in a timely manner. Try again in a minute when the problem might be fixed."
       return
     end
