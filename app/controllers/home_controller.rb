@@ -18,9 +18,7 @@ class HomeController < ApplicationController
     req.set_form_data('uName'=> username, 'pWord'=> password)
     post_response = nil
     begin
-      res = Net::HTTP.start('10.41.68.100', 80) do |http|
-        http.open_timeout = 4
-        http.read_timeout = 4
+      res = Net::HTTP.start('10.41.68.100', 80, {:open_timeout=>2, :read_timeout=>3}) do |http|
         post_response = http.request(req)
       end
     rescue Exception => e
@@ -39,22 +37,16 @@ class HomeController < ApplicationController
 
     reset_session # prevent session fixation
     
-    # If they are a valid teacher/student, then store the data to the session
+    # If they are a valid teacher/student, then store the data to the session and redirect
     if response['student'] != nil
       session['student'] = {
-        :name => response['student']['name'],
-        :eq_id => response['student']['eq_id'],
-        :year => response['student']['cohort']
-        }
+        :eq_id => response['student']['eq_id']
+      }
+      Student.find_or_create_by(eq_id: response['student']['eq_id'], year: response['student']['year'], name: response['student']['name'])
+      redirect_to student_path(current_student())
     elsif response['teacher'] != nil
       session['teacher'] = response['teacher']
-    end
-
-    # Now redirect to appropriate area of site
-    if is_student
-      redirect_to "/student/"
-    elsif is_teacher
-      redirect_to "/teacher/"
+      redirect_to "/teachers/"
     else
       render :status => :forbidden, :text => "Your username/password did not authenticate successfully."
       return
