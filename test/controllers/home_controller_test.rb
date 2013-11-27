@@ -22,11 +22,12 @@ class HomeControllerTest < ActionController::TestCase
         :password => "yolo"
       }
     }
-	  stub_request(:post, LearningStyleManager::AUTH_SERVER_URI_STR).
+	stub_request(:post, LearningStyleManager::AUTH_SERVER_URI_STR).
     to_return(:body => lambda { |request|
       data = Rack::Utils.parse_nested_query request.body
       if data['uName'] == @@sample_logins[:student_login][:username] and data['pWord'] == @@sample_logins[:student_login][:password]
         # Student Login
+        # XXX this will create a record in the database with this information. This kinda is against the whole spirit of the Rails testing model, but it's kinda unavoidable.
         return '{"student": {"cohort":2014,"name":"Liam Edwards-Playne","eq_id":"ledwa7"}}'
         
       elsif data['uName'] == @@sample_logins[:teacher_login][:username] and data['pWord'] == @@sample_logins[:teacher_login][:password]
@@ -48,11 +49,13 @@ class HomeControllerTest < ActionController::TestCase
   test "should successfully login a student" do
   	post :login, username: @@sample_logins[:student_login][:username], password: @@sample_logins[:student_login][:password]
   	assert_not_nil session['student']
+  	assert_redirected_to student_path(@controller.current_student)
   end
   
   test "should successfully login a teacher" do
   	post :login, username: @@sample_logins[:teacher_login][:username], password: @@sample_logins[:teacher_login][:password]
   	assert_not_nil session['teacher']
+  	assert_redirected_to "/teachers/"
   end
   
   test "should fail to login given bad credentials" do

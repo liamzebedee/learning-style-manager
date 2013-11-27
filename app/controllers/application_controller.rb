@@ -4,20 +4,41 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   layout "main"
+  
+  helper_method :current_student
+
+  def current_student
+    @current_student ||= Student.find_by(eq_id: session['student'][:eq_id])
+  end
 end
 
 def is_student
-  # Check session for student object
   session['student'] != nil
 end
 
 def is_teacher
-  # Check session for teacher object
   session['teacher'] != nil
 end
 
-def is_logged_in
-  is_student or is_teacher
+def auth_students_only
+  if !is_student
+    render :status => :forbidden, :text => "You can only see this page if you are a student."
+    raise AuthException, "Student not authenticated."
+  end
+end
+
+def auth_teachers_only
+  if !is_teacher
+    render :status => :forbidden, :text => "You can only see this page if you are a teacher."
+    raise AuthException, "Teacher not authenticated."
+  end
+end
+
+def auth_students_and_teachers_only
+  if !is_student or !is_teacher
+    render :status => :forbidden, :text => "You can only see this page if you are a student or teacher."
+    raise AuthException, "Student/teacher not authenticated."
+  end
 end
 
 class AuthException < Exception
