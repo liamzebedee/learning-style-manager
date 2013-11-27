@@ -1,5 +1,5 @@
 <h1>Learning Style Manager — Login</h1>
-
+<p class="text-danger"><%= flash[:notice] %></p>
 <%= form_tag("login", method: "post") do %>
   <div class="form-group">
     <label for="username">Username</label>

@@ -22,7 +22,8 @@ class HomeController < ApplicationController
         post_response = http.request(req)
       end
     rescue Exception => e
-      render :status => :service_unavailable, :text => "We couldn't connect to the authentication server in a timely manner. Try again in a minute when the problem might be fixed."
+      flash[:notice] = "We couldn't connect to the authentication server in a timely manner. Try again in a minute when the problem might be fixed."
+      redirect_to :back
       return
     end
     
@@ -31,7 +32,8 @@ class HomeController < ApplicationController
     when Net::HTTPSuccess
       response = JSON.parse(post_response.body)
     else
-      render :status => :service_unavailable, :text => "We couldn't connect to the authentication server in a timely manner. Try again in a minute when the problem might be fixed."
+      flash[:notice] = "We couldn't connect to the authentication server in a timely manner. Try again in a minute when the problem might be fixed."
+      redirect_to :back
       return
     end
 
@@ -48,8 +50,8 @@ class HomeController < ApplicationController
       session['teacher'] = response['teacher']
       redirect_to "/teachers/"
     else
-      render :status => :forbidden, :text => "Your username/password did not authenticate successfully."
-      return
+      flash[:notice] = "Your username/password was wrong"
+      redirect_to :back
     end
   end
   
