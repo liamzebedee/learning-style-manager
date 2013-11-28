@@ -44,7 +44,7 @@ gem 'RedCloth'
 
 # For testing the login process on EQ's external servers
 # XXX webmock might not be needed in the future
-group :test do
+group :development, :test do
   gem 'webmock'
 end
 

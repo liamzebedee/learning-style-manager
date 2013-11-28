@@ -5,3 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+case Rails.env
+when "development"
+  Student.find_or_create_by({name: 'Bobby Jo', eq_id: 'bjo123', year: 2014})
+when "production"
+end

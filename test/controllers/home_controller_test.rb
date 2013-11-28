@@ -8,8 +8,8 @@ class HomeControllerTest < ActionController::TestCase
   def setup
     @@sample_logins = {
       :student_login => {
-        :username => "ledwa7",
-        :password => "IdeasAreBulletproof"
+        :username => "bjo123",
+        :password => "BTC"
       },
 
       :teacher_login => {
@@ -28,7 +28,7 @@ class HomeControllerTest < ActionController::TestCase
       if data['uName'] == @@sample_logins[:student_login][:username] and data['pWord'] == @@sample_logins[:student_login][:password]
         # Student Login
         # XXX this will create a record in the database with this information. This kinda is against the whole spirit of the Rails testing model, but it's kinda unavoidable.
-        return '{"student": {"cohort":2014,"name":"Liam Edwards-Playne","eq_id":"ledwa7"}}'
+        return '{"student": {"cohort":2014,"name":"Bobby Jo","eq_id":"bjo123"}}'
         
       elsif data['uName'] == @@sample_logins[:teacher_login][:username] and data['pWord'] == @@sample_logins[:teacher_login][:password]
         # Teacher Login

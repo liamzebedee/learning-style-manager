@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_student
 
   def current_student
-    @current_student ||= Student.find_by(session['student'][:id])
+    @current_student ||= Student.find_by(id: session['student'][:id])
   end
 end
 
@@ -21,7 +21,7 @@ def is_teacher
 end
 
 def auth_students_only(params)
-  if session['student'][:id] != params[:id].to_i
+  if session['student'].nil? or session['student'][:id] != params[:id].to_i
     render :status => :forbidden, :text => "You are not authorised to see this page."
     raise AuthException, "Student not authenticated."
   end
@@ -35,7 +35,7 @@ def auth_teachers_only
 end
 
 def auth_students_and_teachers_only(params)
-  if current_student.id != params[:id].to_i and !is_teacher
+  if (session['student'].nil? or session['student'][:id] != params[:id].to_i) and !is_teacher
     render :status => :forbidden, :text => "You can only see this page if you are a student or teacher."
     raise AuthException, "Student/teacher not authenticated."
   end

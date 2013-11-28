@@ -14,5 +14,5 @@ LearningStyleManager::Application.routes.draw do
   
   root "home#index"
   post "login", to: "home#login"
-  post "logout", to: "home#logout"
+  get  "logout", to: "home#logout"
 end

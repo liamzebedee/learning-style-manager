@@ -1,6 +1,7 @@
 require 'net/protocol'
 require 'net/http'
 require 'json'
+require 'uri'
 
 class HomeController < ApplicationController
   def index
@@ -14,11 +15,12 @@ class HomeController < ApplicationController
     password = params['password']
 
     # Connect to authentication server and validate credentials
+    uri = URI.parse(URI.escape LearningStyleManager::AUTH_SERVER_URI)
     req = Net::HTTP::Post.new(LearningStyleManager::AUTH_SERVER_URI)
     req.set_form_data('uName'=> username, 'pWord'=> password)
     post_response = nil
     begin
-      res = Net::HTTP.start('10.41.68.100', 80, {:open_timeout=>2, :read_timeout=>3}) do |http|
+      res = Net::HTTP.start(uri.host, uri.port, {:open_timeout=>2, :read_timeout=>3}) do |http|
         post_response = http.request(req)
       end
     rescue Exception => e
@@ -45,7 +47,7 @@ class HomeController < ApplicationController
       session['student'] = {
         :id => student.id
       }
-      redirect_to :controller => 'students', :action => 'dashboard', :id => current_student().id
+      redirect_to :controller => 'students', :action => 'dashboard', :id => student.id
     elsif response['teacher'] != nil
       session['teacher'] = response['teacher']
       redirect_to "/teachers/"
