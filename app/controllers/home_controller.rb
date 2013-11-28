@@ -41,11 +41,11 @@ class HomeController < ApplicationController
     
     # If they are a valid teacher/student, then store the data to the session and redirect
     if response['student'] != nil
+      student = Student.find_or_create_by(eq_id: response['student']['eq_id'], year: response['student']['cohort'], name: response['student']['name'])
       session['student'] = {
-        :eq_id => response['student']['eq_id']
+        :id => student.id
       }
-      Student.find_or_create_by(eq_id: response['student']['eq_id'], year: response['student']['year'], name: response['student']['name'])
-      redirect_to student_path(current_student())
+      redirect_to :controller => 'students', :action => 'dashboard', :id => current_student().id
     elsif response['teacher'] != nil
       session['teacher'] = response['teacher']
       redirect_to "/teachers/"
