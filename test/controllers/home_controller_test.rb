@@ -22,7 +22,7 @@ class HomeControllerTest < ActionController::TestCase
         :password => "yolo"
       }
     }
-	stub_request(:post, LearningStyleManager::AUTH_SERVER_URI_STR).
+	stub_request(:post, LearningStyleManager::AUTH_SERVER_URI).
     to_return(:body => lambda { |request|
       data = Rack::Utils.parse_nested_query request.body
       if data['uName'] == @@sample_logins[:student_login][:username] and data['pWord'] == @@sample_logins[:student_login][:password]

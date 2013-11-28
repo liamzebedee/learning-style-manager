@@ -9,8 +9,7 @@ require 'uri'
 Bundler.require(:default, Rails.env)
 
 module LearningStyleManager
-  AUTH_SERVER_URI_STR = 'http://10.41.68.100/utils/authenticate.php'
-  AUTH_SERVER_URI = AUTH_SERVER_URI_STR
+  AUTH_SERVER_URI = 'http://10.41.68.100/utils/authenticate.php'
 
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
