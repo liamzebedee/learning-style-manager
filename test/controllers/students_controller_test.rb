@@ -11,7 +11,8 @@ class StudentsControllerTest < ActionController::TestCase
   end
   
   test "should show student dashboard" do
-    get :dashboard, {:id => students(:dave).id}, {'student'=>{:eq_id=>'dave123'}}
+    # XXX should centralise this test student 'Billy Jo' to a single fixture for both development and testing
+    get :dashboard, {:id => students(:billy).id}, {'student'=>{:id=>students(:billy).id}}
     assert_response :success
   end
 end

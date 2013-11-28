@@ -49,7 +49,8 @@ class HomeControllerTest < ActionController::TestCase
   test "should successfully login a student" do
   	post :login, username: @@sample_logins[:student_login][:username], password: @@sample_logins[:student_login][:password]
   	assert_not_nil session['student']
-  	assert_redirected_to student_path(@controller.current_student)
+  	# XXX there should be a way to link to the 'dashboard' action dynamically
+  	assert_redirected_to student_path(:controller => 'students', :action => 'dashboard', :id => @controller.current_student.id)+'/dashboard'
   end
   
   test "should successfully login a teacher" do
@@ -59,6 +60,7 @@ class HomeControllerTest < ActionController::TestCase
   end
   
   test "should fail to login given bad credentials" do
+    request.env["HTTP_REFERER"] = '/'
   	post :login, username: @@sample_logins[:bad_login][:username], password: @@sample_logins[:bad_login][:password]
   	# FIX this may be bad for future versions
   	assert_nil(session['teacher'])
