@@ -35,7 +35,7 @@ def auth_teachers_only
 end
 
 def auth_students_and_teachers_only(params)
-  if current_student.id != params[:id] and !is_teacher
+  if current_student.id != params[:id].to_i and !is_teacher
     render :status => :forbidden, :text => "You can only see this page if you are a student or teacher."
     raise AuthException, "Student/teacher not authenticated."
   end
