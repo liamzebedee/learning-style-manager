@@ -42,24 +42,26 @@
   }
 }
 
-#student-home,
-#teacher-home {
-  li {
-    .big-column(6);
-  }
+#students-dashboard,
+#teachers-home {
+  .blocky-menu {
+    li {
+      .big-column(6);
+    }
 
-  a {
-    display: block;
-    text-align: left;
-    padding: 3em;
-    .btn-primary();
-    text-decoration: none;
+    a {
+      display: block;
+      text-align: left;
+      padding: 3em;
+      .btn-primary();
+      text-decoration: none;
+    }
   }
 }
 
-#student-test,
-#student-results,
-#teacher-student-results {
+#students-test,
+#students-results,
+#teachers-student-results {
   @navbar-height: 50px;
   .navbar h1 { margin: 0px; }
   padding-top: @navbar-height;
@@ -77,7 +79,7 @@
   }
 }
 
-#student-results {
+#students-results {
   #results-star {
     ul { .list-inline; }
   }
