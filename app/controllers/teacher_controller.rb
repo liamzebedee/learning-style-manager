@@ -1,28 +1,21 @@
-class TeacherController < ApplicationController
-  def do_auth
-    if !is_teacher
-      render :status => :forbidden, :text => "You can only see this page if you are a teacher."
-      raise AuthException, "Teacher not authenticated."
-    end
-  end
-
+class TeachersController < ApplicationController
   def index
-    do_auth
+    auth_teachers_only
     @page_title = "Dashboard | Learning Style Manager"
-    @page_id = 'teacher-home'
-    render 'teacher/index'
+    @page_id = 'teachers-home'
+    render 'teachers/index'
   rescue AuthException
   end
 
   def school_results
-    do_auth
-    @page_title = "Student Results | Learning Style Manager"
-    @page_id = 'teacher-student-results'
+    auth_teachers_only
+    @page_title = "School Results | Learning Style Manager"
+    @page_id = 'teachers-school-results'
 
     @last_cohort = (Time.now.year + 2)
     @current_cohort = Time.now.year
 
-    render 'teacher/student_results'
+    render 'teachers/school_results'
   rescue AuthException
   end
 end
