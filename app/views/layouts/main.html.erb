@@ -25,10 +25,16 @@
 	<!-- iOS, Android -->
 	<link rel="apple-touch-icon-precomposed" href="/assets/images/icon-touch-precomposed.png">
 
-  <%= stylesheet_link_tag "application" %>
+	<%= stylesheet_link_tag "application" %>
 </head>
 
 <body id="container">
+  <% if not current_page?('/') %>
+  <header>
+    <%= render 'shared/menu' %>
+  </header>
+  <% end %>
+  
   <div id="page-wrap"><div class="page" id="<%= @page_id %>">
     <%= yield %>
   </div></div>
