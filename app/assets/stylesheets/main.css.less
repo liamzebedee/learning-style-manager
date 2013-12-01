@@ -28,63 +28,20 @@
 #container {
   .container-fixed();
   padding: 0px;
-  #page-wrap {
-    padding: 15px;
-    .make-row();
-    .big-offset(1);
-    .big-column(10);
-  }
   #page-footer-wrap {
     margin-top: 3em;
     a { color: @gray-light; }
     .big-offset(10);
     .big-column(2);
   }
-}
-
-#students-dashboard,
-#teachers-home {
-  .blocky-menu {
-    li {
-      .big-column(6);
-    }
-
-    a {
-      display: block;
-      text-align: left;
-      padding: 3em;
-      .btn-primary();
-      text-decoration: none;
-    }
-  }
-}
-
-#students-test,
-#students-results,
-#teachers-student-results {
-  @navbar-height: 50px;
-  .navbar h1 { margin: 0px; }
-  padding-top: @navbar-height;
-  #intro  {
-    .anchor-padding-for-navbar;
-    .jumbotron { margin-bottom: 0px; }
-  }
-
-  section {
-    .anchor-padding-for-navbar;
-    h2 { .page-header }
-  }
-  section:first-child {
-    background: blue;
-  }
-}
-
-#students-results {
-  #results-star {
-    ul { .list-inline; }
+  
+  article {
+    .make-row();
+    .big-offset(1);
+    .big-column(10);
   }
 }
 
 #home {
-  form { .big-column(3); }
+  form { .big-column(5); }
 }

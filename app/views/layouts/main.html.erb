@@ -29,9 +29,9 @@
 </head>
 
 <body id="container">
-  <div id="page-wrap"><article class="page" id="<%= @page_id %>">
+  <div id="page-wrap"><div class="page" id="<%= @page_id %>">
     <%= yield %>
-  </article></div>
+  </div></div>
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
   <%= javascript_include_tag "application" %>
