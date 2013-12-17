@@ -9,13 +9,15 @@
 		<% Dol5TestResult::QUESTIONS.each_with_index do |question,question_i| %>
 			<div class="question">
 				<h3><%= question %></h3>
-			
+				
+				<div class="options">
 				<% Dol5TestResult::OPTIONS.each_with_index do |option, option_i| %>
 					<div class="radio">
 						<%= builder.radio_button(question_i, option_i) %>
 						<%= builder.label(question_i, option, value: option_i) %>
 					</div>
 				<% end %>
+				</div>
 			</div>
 		<% end %>
 	</div>
