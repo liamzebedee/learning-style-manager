@@ -16,7 +16,7 @@ class StarTestController < ApplicationController
     
     # Validate params
     StarTestResult::QUESTIONS.each_with_index do |(question, options), question_i|
-      answer = data[question_i].to_i
+      answer = data[question_i.to_s].to_i
       # Set answer by default to 0
       answers[question_i] = (answer || 0) % options.length
     end

@@ -2,7 +2,7 @@
 <span class="label label-primary"><%= StarTestResult::QUESTIONS.length %> questions</span>&nbsp;<span class="label label-info">Approx. <%= (StarTestResult::QUESTIONS.length * 8)/60 %> minutes</span>
 
 <section class="test">
-<%= form_for @star_test, url: {action: "create"} do |f| %>
+<%= form_for @star_test, url: {action: "create"}, html: {autocomplete: "off"} do |f| %>
 	
 	<%= f.fields_for :answers do |builder| %>
 	<div class="questions">

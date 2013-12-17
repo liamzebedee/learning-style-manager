@@ -123,7 +123,7 @@ class AusidentitiesTestResult < ActiveRecord::Base
 			["Well organised", "More spontaneous"]]]
 
 
-  serialize :raw_results, Hash
+  serialize :answers, Array
   # letters: string
   # animal: integer
 

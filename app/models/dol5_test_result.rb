@@ -23,5 +23,5 @@ class Dol5TestResult < ActiveRecord::Base
   # e.g. habits_ranked[:lacks_awareness] = [1, 5, 6]
   # lacks_awareness understand_meaning developing_strategies becoming_a_habit
   serialize :habits_ranked, Hash
-  serialize :raw_results, Hash
+  serialize :answers, Array
 end

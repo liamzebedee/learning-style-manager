@@ -141,7 +141,7 @@ class StarTestResult < ActiveRecord::Base
        "I say \"it's great to hear your voice!\"",
        "I send an email or text to say hello"]]]
 
-  serialize :answers, Hash
+  serialize :answers, Array
   serialize :star_tally, Hash
   # { :spatial => 0.25, :tactile => 0.25, :auditory => 0.25, :reading => 0.25 }
   serialize :star_ranked, Hash

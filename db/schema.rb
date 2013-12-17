@@ -11,10 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131217111830) do
+ActiveRecord::Schema.define(version: 20131217122240) do
 
   create_table "ausidentities_test_results", force: true do |t|
-    t.text     "raw_results"
+    t.text     "answers"
     t.string   "letters"
     t.integer  "animal"
     t.datetime "created_at"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20131217111830) do
 
   create_table "dol5_test_results", force: true do |t|
     t.text     "habits_ranked"
-    t.text     "raw_results"
+    t.text     "answers"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "learning_test_result_id"
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20131217111830) do
 
   create_table "gmit_test_results", force: true do |t|
     t.text     "intelligences_ranked"
-    t.text     "raw_results"
+    t.text     "answers"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "learning_test_result_id"
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 20131217111830) do
   end
 
   create_table "star_test_results", force: true do |t|
-    t.text     "raw_results"
+    t.text     "answers"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "learning_test_result_id"
