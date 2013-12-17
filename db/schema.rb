@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131217022552) do
+ActiveRecord::Schema.define(version: 20131217030053) do
 
   create_table "ausidentities_test_results", force: true do |t|
     t.text     "raw_results"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20131217022552) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "learning_test_result_id"
+    t.integer  "student_id"
   end
 
   create_table "dol5_test_results", force: true do |t|
@@ -28,6 +29,7 @@ ActiveRecord::Schema.define(version: 20131217022552) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "learning_test_result_id"
+    t.integer  "student_id"
   end
 
   create_table "gmit_test_results", force: true do |t|
@@ -36,12 +38,12 @@ ActiveRecord::Schema.define(version: 20131217022552) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "learning_test_result_id"
+    t.integer  "student_id"
   end
 
   create_table "learning_test_results", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "student_id"
     t.integer  "dol_test_result_id"
     t.integer  "gmi_test_result_id"
     t.integer  "aui_test_result_id"
@@ -54,6 +56,7 @@ ActiveRecord::Schema.define(version: 20131217022552) do
     t.datetime "updated_at"
     t.integer  "learning_test_result_id"
     t.text     "star_ranked"
+    t.integer  "student_id"
   end
 
   create_table "students", force: true do |t|
