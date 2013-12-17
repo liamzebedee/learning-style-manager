@@ -1,0 +1,43 @@
+@import "bootstrap-3.0.3/bootstrap.less";
+@import "bootstrap-3.0.3/mixins.less";
+@import "flatly/bootswatch.less";
+@import "flatly/variables.less";
+
+// Utility mixins
+// ==============
+
+.big-column(@columns) {
+	.make-md-column(@columns);
+	.make-lg-column(@columns);
+}
+.big-offset(@columns) {
+	.make-md-column-offset(@columns);
+	.make-lg-column-offset(@columns);
+}
+
+.text-finished {
+	.text-muted;
+	text-decoration: line-through;
+}
+
+.navbar {
+	margin-bottom: 0px;
+}
+
+// Structure
+// =========
+header {
+	nav {
+		.container-fixed();
+		.navbar-default;
+	}
+}
+
+#page-wrap {
+	.container-fixed();
+	.page {
+		.make-row();
+		.big-offset(1);
+		.big-column(10);
+	}
+}

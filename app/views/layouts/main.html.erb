@@ -28,17 +28,18 @@
 	<%= stylesheet_link_tag "application" %>
 </head>
 
-<body id="container">
+<body>
   <% if not current_page?('/') %>
   <header>
     <%= render 'shared/menu' %>
   </header>
   <% end %>
   
-  <div id="page-wrap"><div class="page" id="<%= @page_id %>">
+  <% page_id = "#{controller_name}-#{action_name}" %>
+  <div id="page-wrap"><div class="page" id="<%= page_id %>">
     <%= yield %>
   </div></div>
-
+  
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
   <%= javascript_include_tag "application" %>
 </body>

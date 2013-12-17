@@ -12,6 +12,6 @@
 //
 //= require turbolinks
 //= require_tree .
-//= require bootstrap-3.0.0
+//= require_tree ./../../../vendor/assets/javascripts/bootstrap-3.0.3
 //= require jqBootstrapValidation-1.3.6
 //= require bootstrap-sortable

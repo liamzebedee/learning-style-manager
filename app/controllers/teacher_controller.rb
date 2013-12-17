@@ -2,7 +2,6 @@ class TeachersController < ApplicationController
   def index
     auth_teachers_only
     @page_title = "Dashboard | Learning Style Manager"
-    @page_id = 'teachers-home'
     render 'teachers/index'
   rescue AuthException
   end
@@ -10,7 +9,6 @@ class TeachersController < ApplicationController
   def school_results
     auth_teachers_only
     @page_title = "School Results | Learning Style Manager"
-    @page_id = 'teachers-school-results'
 
     @last_cohort = (Time.now.year + 2)
     @current_cohort = Time.now.year

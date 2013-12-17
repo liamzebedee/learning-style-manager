@@ -1,5 +1,5 @@
 <% if is_student %>
-<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+<nav class="navbar navbar-static-top" role="navigation">
 	<a class="navbar-brand">Learning Style Manager</a>
 	<ul class="nav navbar-nav">
 		<li class="<%= "active" if current_page?(dashboard_student_path(current_student)) %>"><a href="<%= dashboard_student_path(current_student) %>">Dashboard</a></li>
@@ -20,7 +20,7 @@
 </nav>
 
 <% elsif is_teacher %>
-<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+<nav class="navbar navbar-static-top" role="navigation">
 	<a class="navbar-brand">Learning Style Manager</a>
 	<ul class="nav navbar-nav">
 		<li class="active"><a href="/teachers/dashboard">Dashboard</a></li>

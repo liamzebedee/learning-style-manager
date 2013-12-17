@@ -19,6 +19,8 @@ Gemfile.lock
 
 docs/*
 
+public/assets/*
+
 # These are just files on my local system that I like to ignore
 PLAN.md
 open-ide.sh
