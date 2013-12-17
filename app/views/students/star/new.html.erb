@@ -1,1 +1,25 @@
-<h1 class="page-header">New STAR learning test</h1>
+<h1 class="page-header">New STAR learning test <small>(Spacial Tactile Auditory Reading)</small></h1>
+
+<section class="test">
+<%= form_for @star_test, url: {action: "create"} do |f| %>
+	
+	<%= f.fields_for :answers do |builder| %>
+	<div class="questions">
+		<% StarTestResult::QUESTIONS.each_with_index do |(question, options), question_i| %>
+			<div class="question">
+				<%= builder.hidden_field :question_id, :value => question_i %>
+				<h3><%= question %></h3>
+			
+				<% options.each_with_index do |option, option_i| %>
+					<div class="radio">
+						<%= builder.radio_button(question_i, option_i) %>
+						<%= builder.label(question_i, option, value: option_i) %>
+					</div>
+				<% end %>
+			</div>
+		<% end %>
+	</div>
+	<% end %>
+	<button class="btn btn-primary btn-lg" value="submit" name="commit" type="submit">Finish test</button>
+<% end %>
+</section>
