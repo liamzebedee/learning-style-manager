@@ -13,7 +13,7 @@
 				<div class="options">
 				<% GmitTestResult::OPTIONS.each_with_index do |option, option_i| %>
 					<div class="radio">
-						<%= builder.radio_button(question_i, option_i) %>
+						<%= builder.radio_button(question_i, option_i, required: true) %>
 						<%= builder.label(question_i, option, value: option_i) %>
 					</div>
 				<% end %>
