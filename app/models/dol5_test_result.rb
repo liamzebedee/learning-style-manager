@@ -1,4 +1,4 @@
-class DolTestResult < ActiveRecord::Base
+class Dol5TestResult < ActiveRecord::Base
   OPTIONS = ["Lacks Awareness", "Understand Meaning", "Developing Strategies", "Becoming a Habit"]
   QUESTIONS = [
     "Persisting. Do I give up easily?",

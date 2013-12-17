@@ -1,4 +1,4 @@
-class AuiTestResult < ActiveRecord::Base
+class AusidentitiesTestResult < ActiveRecord::Base
   AUS_IDENTITIES = ['Eagle', 'Kangaroo', 'Dolphin', 'Wombat']
   QUESTIONS =
 		[["Do you enjoy having lots of friends, or just a few special friends?",

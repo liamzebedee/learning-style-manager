@@ -1,4 +1,4 @@
-class GmiTestResult < ActiveRecord::Base
+class GmitTestResult < ActiveRecord::Base
   LINGUISTIC = 0
   MATHEMATICAL = 1
   MUSICAL = 2
@@ -62,7 +62,7 @@ class GmiTestResult < ActiveRecord::Base
   MAX_INTELLIGENCE_TALLY_SCORE = (QUESTIONS_PER_INTELLIGENCE * 3)
 
   serialize :intelligences_ranked, Hash
-  serialize :raw_results, Hash
+  serialize :answers, Hash
 
   def top_intelligences
     [INTELLIGENCES[self.intelligences_ranked.keys[0]], INTELLIGENCES[self.intelligences_ranked.keys[1]]]

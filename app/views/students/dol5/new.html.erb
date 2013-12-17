@@ -1,15 +1,15 @@
-<h1 class="page-header">New STAR learning test <small>(Spacial Tactile Auditory Reading)</small></h1>
+<h1 class="page-header">New DOL5 learning test <small>(Dimensions of Learning)</small></h1>
 
 <section class="test">
-<%= form_for @star_test, url: {action: "create"} do |f| %>
+<%= form_for @dol5_test, url: {action: "create"} do |f| %>
 	
 	<%= f.fields_for :answers do |builder| %>
 	<div class="questions">
-		<% StarTestResult::QUESTIONS.each_with_index do |(question, options), question_i| %>
+		<% Dol5TestResult::QUESTIONS.each_with_index do |question,question_i| %>
 			<div class="question">
 				<h3><%= question %></h3>
 			
-				<% options.each_with_index do |option, option_i| %>
+				<% Dol5TestResult::OPTIONS.each_with_index do |option, option_i| %>
 					<div class="radio">
 						<%= builder.radio_button(question_i, option_i) %>
 						<%= builder.label(question_i, option, value: option_i) %>

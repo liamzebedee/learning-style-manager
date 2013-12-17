@@ -11,7 +11,6 @@ class StarTestController < ApplicationController
   def create
     auth_students_only(params)
     student = current_student()
-    
   rescue AuthException
   end
 end
