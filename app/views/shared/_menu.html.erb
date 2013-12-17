@@ -10,8 +10,8 @@
 		<ul class="dropdown-menu">
 			<li><a href="<%= new_student_star_path(current_student) %>">STAR (Spatial Tactile Auditory Reading)</a></li>
 			<li><a href="<%= new_student_dol5_path(current_student) %>">DOL5 (Dimensions of Learning)</a></li>
-			<li><a href="<%= new_student_gmit_path(current_student) %>">GMI (Gardner's Multiple Intelligences)</a></li>
-			<li><a href="<%= new_student_ausidentity_path(current_student) %>">AUI (AusIdentities)</a></li>
+			<li><a href="<%= new_student_gmit_path(current_student) %>">GMIT (Gardner's Multiple Intelligences)</a></li>
+			<li><a href="<%= new_student_ausidentity_path(current_student) %>">AusIdentities</a></li>
 		</ul>
 		</li>
 		<li class="<%= "active" if current_page?(student_path(current_student)) %>"><a href="<%= student_path(current_student) %>">Results</a></li>

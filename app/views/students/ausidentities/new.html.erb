@@ -1,11 +1,12 @@
 <h1 class="page-header">New AusIdentities learning test</h1>
+<span class="label label-primary"><%= AusidentitiesTestResult::QUESTIONS.length %> questions</span>&nbsp;<span class="label label-info">Approx. <%= (AusidentitiesTestResult::QUESTIONS.length * 4)/60 %> minutes</span>
 
 <section class="test">
 <%= form_for @ausidentities_test, url: {action: "create"} do |f| %>
 	
 	<%= f.fields_for :answers do |builder| %>
 	<div class="questions">
-		<% StarTestResult::QUESTIONS.each_with_index do |(question, options), question_i| %>
+		<% AusidentitiesTestResult::QUESTIONS.each_with_index do |(question, options), question_i| %>
 			<div class="question">
 				<h3><%= question %></h3>
 			
@@ -19,6 +20,7 @@
 		<% end %>
 	</div>
 	<% end %>
+	<hr>
 	<button class="btn btn-primary btn-lg" value="submit" name="commit" type="submit">Finish test</button>
 <% end %>
 </section>

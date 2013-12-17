@@ -1,17 +1,19 @@
+<h1 class="page-header"><%= current_student.name %>'s results</h1>
 
 
-<% if false %>
+
+<% if is_teacher and current_student.has_been_fully_tested %>
 <section id="overview">
   <div class="jumbotron">
     <div class="container">
       <h1>Overview</h1>
-      <p>You are mainly a <strong><%= @star_first %> learner</strong>.
-      To learn more about your learning style, read <a href="/docs/STAR-<%= @star_first.capitalize %>.pdf">this document</a> on
-      learning new ideas, making study aids and performing well.</p>
+      <p>Mainly a <strong><%= @star_first %> learner </strong>.
     </div>
   </div>
 </section>
+<% end %>
 
+<% if current_student.dol5_test_results.any? %>
 <section id="results-dol">
 <h2>Dimensions of Learning <small><a href="/docs/DOL5-Summary.pdf">Learn more</a></small></h2>
 <p>Below are the 16 habits of mind that you have ranked into various categories.</p>
@@ -24,7 +26,9 @@
   </ul>
 <% end %>
 </section>
+<% end %>
 
+<% if current_student.gmit_test_results.any? %>
 <section id="results-gmi">
 <h2>Gardner's Multiple Intelligences <small><a href="/docs/GMI-Summary.pdf">Learn more</a></small></h2>
 <p>Your top two intelligences are <strong><%= @gmi.top_intelligences[0] %></strong> and <strong><%= @gmi.top_intelligences[1] %></strong>.
@@ -38,7 +42,9 @@ Below you will find all intelligence classifications and your scores for each. T
 </li>
 <% end %>
 </section>
+<% end %>
 
+<% if current_student.star_test_results.any? %>
 <section id="results-star">
 <h2>Spatial Tactile Auditory Reading <small><a href="/docs/STAR-Overview.pdf">Learn more</a></small></h2>
 <p>You are mainly a <strong><%= @star_first %> learner</strong>. Below you can see how much your learning style tends to those of the STAR framework.</p>
@@ -50,10 +56,11 @@ Below you will find all intelligence classifications and your scores for each. T
 </li>
 <% end %>
 </section>
+<% end %>
 
+<% if current_student.ausidentities_test_results.any? %>
 <section id="results-aui">
 <h2>AusIdentities <small><a href="/docs/AUI-Summary.pdf">Learn more</a></small></h2>
 <p>Your AusIdentity is the <strong><%= @aui_animal %></strong>.</p>
 </section>
-
 <% end %>

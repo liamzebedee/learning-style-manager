@@ -8,7 +8,7 @@ class StudentsController < ApplicationController
   
   def show
     auth_students_and_teachers_only(params)
-    @page_title = "Student Overview | Learning Style Manager"
+    @page_title = "#{current_student.name}'s results | Learning Style Manager"
     render "students/show"
   rescue AuthException
   end

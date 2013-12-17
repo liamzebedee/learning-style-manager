@@ -1,4 +1,5 @@
 <h1 class="page-header">New DOL5 learning test <small>(Dimensions of Learning)</small></h1>
+<span class="label label-primary"><%= Dol5TestResult::QUESTIONS.length %> questions</span>&nbsp;<span class="label label-info">Approx. <%= (Dol5TestResult::QUESTIONS.length * 10)/60 %> minutes</span>
 
 <section class="test">
 <%= form_for @dol5_test, url: {action: "create"} do |f| %>
@@ -19,6 +20,7 @@
 		<% end %>
 	</div>
 	<% end %>
+	<hr>
 	<button class="btn btn-primary btn-lg" value="submit" name="commit" type="submit">Finish test</button>
 <% end %>
 </section>

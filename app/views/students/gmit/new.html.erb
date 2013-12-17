@@ -1,4 +1,5 @@
 <h1 class="page-header">New GMI learning test <small>(Gardner's Multiple Intelligences Test)</small></h1>
+<span class="label label-primary"><%= GmitTestResult::QUESTIONS.length %> questions</span>&nbsp;<span class="label label-info">Approx. <%= (GmitTestResult::QUESTIONS.length * 7)/60 %> minutes</span>
 
 <section class="test">
 <%= form_for @gmit_test, url: {action: "create"} do |f| %>
@@ -19,6 +20,7 @@
 		<% end %>
 	</div>
 	<% end %>
+	<hr>
 	<button class="btn btn-primary btn-lg" value="submit" name="commit" type="submit">Finish test</button>
 <% end %>
 </section>
