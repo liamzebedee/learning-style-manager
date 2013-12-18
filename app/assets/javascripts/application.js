@@ -13,6 +13,5 @@
 //= require turbolinks
 //= require_tree .
 //= require bootstrap
-//= require jqBootstrapValidation-1.3.6
 //= require bootstrap-sortable
 //= require Chart

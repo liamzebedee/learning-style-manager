@@ -1,66 +1,81 @@
 <h1 class="page-header"><%= current_student.name %>'s results</h1>
 
-
-
 <% if is_teacher and current_student.has_been_fully_tested %>
 <section id="overview">
   <div class="jumbotron">
     <div class="container">
       <h1>Overview</h1>
-      <p>Mainly a <strong><%= @star_first %> learner </strong>.
+      <p>This student is mainly a <strong><%= current_student.latest_star_test_result.main_style %> learner</strong>.</p>
     </div>
   </div>
 </section>
 <% end %>
 
-<% if current_student.dol5_test_results.any? %>
-<section id="results-dol">
-<h2>Dimensions of Learning <small><a href="/docs/DOL5-Summary.pdf">Learn more</a></small></h2>
-<p>Below are the 16 habits of mind that you have ranked into various categories.</p>
-<% @dol.habits_ranked.values.each_with_index do |habits, category_i| %>
-  <h3><%= DolTestResult::OPTIONS[category_i] %></h3>
-  <ul>
-    <% habits.each do |habit_i| %>
-    <li>#<%= habit_i.to_i + 1 %> — <%= DolTestResult::QUESTIONS[habit_i.to_i] %></li>
-    <% end %>
-  </ul>
-<% end %>
+<section id="results-dol" class="results">
+	<h2>Dimensions of Learning <small><a href="/docs/DOL5-Summary.pdf">Learn more</a></small></h2>
+	<% if current_student.dol5_test_results.any? %>
+		<p>Below are the 16 habits of mind that you have ranked into various categories.</p>
+		<% # TODO this part is dynamic but ugly %>
+		<% current_student.latest_dol5_test_result.habits_ranked.values.each_with_index do |habits, category_i| %>
+			<h3><%= Dol5TestResult::OPTIONS[category_i] %></h3>
+			<ul>
+			<% habits.each do |habit_i| %>
+			<li>#<%= habit_i.to_i + 1 %> — <%= Dol5TestResult::QUESTIONS[habit_i.to_i] %></li>
+			<% end %>
+			</ul>
+		<% end %>
+	<% else %>
+		<p class="text-warning">You will see results here when you have completed <%= link_to "the test", new_student_dol5_path(current_student) %>.</p>
+	<% end %>
 </section>
-<% end %>
 
-<% if current_student.gmit_test_results.any? %>
-<section id="results-gmi">
+<hr>
+
+<section id="results-gmit" class="results">
 <h2>Gardner's Multiple Intelligences <small><a href="/docs/GMI-Summary.pdf">Learn more</a></small></h2>
-<p>Your top two intelligences are <strong><%= @gmi.top_intelligences[0] %></strong> and <strong><%= @gmi.top_intelligences[1] %></strong>.
-Below you will find all intelligence classifications and your scores for each. The higher your score, the more you tend to this style of learning.</p>
-<ul id="gmi-graphic" class="list-inline">
-<% @gmi.intelligences_ranked.each do |intelligence_i, intelligence_tally| %>
-<li>
-  <h3><%= GmiTestResult::INTELLIGENCES[intelligence_i] %></h3>
-  <!--<h4><%= ((intelligence_tally.to_f / (5*3)) * 100).floor %>%</h4>-->
-  <h4><%= intelligence_tally %>/<%= GmiTestResult::MAX_INTELLIGENCE_TALLY_SCORE %></h4>
-</li>
+<% if current_student.gmit_test_results.any? %>
+	<% gmit = current_student.latest_gmit_test_result %>
+	<p>Your top two intelligences are <strong><%= gmit.top_intelligences[0] %></strong> and <strong><%= gmit.top_intelligences[1] %></strong>. Below you will find all intelligence classifications and your scores for each. The higher the score, the more you tend to this style of learning.</p>
+	<ul id="gmi-graphic" class="list-inline">
+	<% gmit.intelligences_ranked.each do |intelligence_i, intelligence_tally| %>
+	<li>
+		<h3><%= GmitTestResult::INTELLIGENCES[intelligence_i] %></h3>
+		<h4><%= intelligence_tally %>/<%= GmitTestResult::MAX_INTELLIGENCE_TALLY_SCORE %></h4>
+	</li>
+	<% end %>
+<% else %>
+	<p class="text-warning">You will see results here when you have completed <%= link_to "the test", new_student_gmit_path(current_student) %>.</p>
 <% end %>
 </section>
-<% end %>
 
-<% if current_student.star_test_results.any? %>
-<section id="results-star">
+<hr>
+
+<section id="results-star" class="results">
 <h2>Spatial Tactile Auditory Reading <small><a href="/docs/STAR-Overview.pdf">Learn more</a></small></h2>
-<p>You are mainly a <strong><%= @star_first %> learner</strong>. Below you can see how much your learning style tends to those of the STAR framework.</p>
-<ul id="star-graphic">
-<% @star_ordered.each do |intelligence, percentage| %>
-<li>
-  <h3><%= intelligence.to_s.capitalize %></h3>
-  <h4><%= (percentage * 100).floor %>%</h4>
-</li>
+<% if current_student.star_test_results.any? %>
+	<p>You are mainly a <strong><%= current_student.latest_star_test_result.main_style %> learner </strong>. Below you can see how much your learning style tends to those of the STAR framework.</p>
+	<ul id="star-graphic">
+	<% current_student.latest_star_test_result.star_ranked.each do |intelligence, percentage| %>
+	<li>
+		<h3><%= intelligence.to_s.capitalize %></h3>
+		<h4><%= (percentage * 100).floor %>%</h4>
+	</li>
+	<% end %>
+	</ul>
+<% else %>
+	<p class="text-warning">You will see results here when you have completed <%= link_to "the test", new_student_star_path(current_student) %>.</p>
 <% end %>
 </section>
-<% end %>
 
-<% if current_student.ausidentities_test_results.any? %>
-<section id="results-aui">
+<hr>
+
+<section id="results-ausidentities" class="results">
 <h2>AusIdentities <small><a href="/docs/AUI-Summary.pdf">Learn more</a></small></h2>
-<p>Your AusIdentity is the <strong><%= @aui_animal %></strong>.</p>
-</section>
+<% if current_student.ausidentities_test_results.any? %>
+	<p>Your AusIdentity is the <strong><%= current_student.latest_ausidentities_test_result.animal_name %></strong>.</p>
+<% else %>
+		<p class="text-warning">You will see results here when you have completed <%= link_to "the test", new_student_ausidentity_path(current_student) %>.</p>
 <% end %>
+</section>
+
+

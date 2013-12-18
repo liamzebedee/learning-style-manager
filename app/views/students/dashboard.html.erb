@@ -4,8 +4,7 @@
 		<h1>Welcome <%= current_student.first_name %></h1>
 		<% if current_student.star_test_results.any? %>
 		<section id="results-star">
-		<h2>Spatial Tactile Auditory Reading <small><a href="/docs/STAR-Overview.pdf">Learn more</a></small></h2>
-		<p>You are mainly a <strong><%= current_student.latest_star_test_result.main_style %> learner</strong>. Below you can see how much your learning style tends to those of the STAR framework.</p>
+		<p>You are mainly a <strong><%= current_student.latest_star_test_result.main_style %> learner</strong>. Below you can see how much your learning style tends to those of the <%= link_to "STAR framework", "/docs/STAR-Overview.pdf" %></a>.</p>
 		<ul id="star-graphic">
 		<% current_student.latest_star_test_result.star_ranked.each do |intelligence, percentage| %>
 		<li>
@@ -13,6 +12,10 @@
 		  <h4><%= (percentage * 100).floor %>%</h4>
 		</li>
 		<% end %>
+		</ul>
+		
+		<p>For a more detailed overview, see your <%= link_to "results for all tests", student_path(current_student) %>.</p>
+		
 		</section>
 		<% end %>
 	</div>
