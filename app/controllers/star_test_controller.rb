@@ -54,6 +54,7 @@ class StarTestController < ApplicationController
           star_ranked[:reading] = percentage
       end
     end
+    star_ranked = Hash[star_ranked.sort_by { |letter, percentage| percentage }.reverse!]
     
     star_test_result.star_ranked = star_ranked
     star_test_result.save!

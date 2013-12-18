@@ -143,6 +143,10 @@ class StarTestResult < ActiveRecord::Base
 
   serialize :answers, Array
   serialize :star_tally, Hash
-  # { :spatial => 0.25, :tactile => 0.25, :auditory => 0.25, :reading => 0.25 }
+  # { :spatial => 0.4, :tactile => 0.1, :auditory => 0.25, :reading => 0.25 }
   serialize :star_ranked, Hash
+  
+  def main_style
+  	star_ranked.keys[0].to_s
+  end
 end

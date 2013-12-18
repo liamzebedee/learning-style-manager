@@ -2,8 +2,19 @@
 <div class="jumbotron">
 	<div class="container">
 		<h1>Welcome <%= current_student.first_name %></h1>
-		
-		
+		<% if current_student.star_test_results.any? %>
+		<section id="results-star">
+		<h2>Spatial Tactile Auditory Reading <small><a href="/docs/STAR-Overview.pdf">Learn more</a></small></h2>
+		<p>You are mainly a <strong><%= current_student.latest_star_test_result.main_style %> learner</strong>. Below you can see how much your learning style tends to those of the STAR framework.</p>
+		<ul id="star-graphic">
+		<% current_student.latest_star_test_result.star_ranked.each do |intelligence, percentage| %>
+		<li>
+		  <h3><%= intelligence.to_s.capitalize %></h3>
+		  <h4><%= (percentage * 100).floor %>%</h4>
+		</li>
+		<% end %>
+		</section>
+		<% end %>
 	</div>
 </div>
 

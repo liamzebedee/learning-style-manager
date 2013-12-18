@@ -122,7 +122,6 @@ class AusidentitiesTestResult < ActiveRecord::Base
 		 ["Is it better to have a teacher that is well organised, or one that is a little more spontaneous?",
 			["Well organised", "More spontaneous"]]]
 
-
   serialize :answers, Array
   # letters: string
   # animal: integer
