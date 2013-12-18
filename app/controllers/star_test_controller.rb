@@ -11,7 +11,7 @@ class StarTestController < ApplicationController
     auth_students_only(params)
     student = current_student()
     data = params['star_test_result']['answers']
-    answers = []
+    answers = Array.new(StarTestResult::QUESTIONS.length, 0)
     star_test_result = StarTestResult.new
     
     # Validate params
@@ -24,7 +24,7 @@ class StarTestController < ApplicationController
     
     # Tally the responses for each letter
     star_tally = { :S => 0, :T => 0, :A => 0, :R => 0 }
-    answers.each do |question_i, option|
+    answers.each_with_index do |option, question_i|
       case option
         when 0
           star_tally[:S] += 1
