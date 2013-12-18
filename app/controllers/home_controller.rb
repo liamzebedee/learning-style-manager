@@ -50,7 +50,7 @@ class HomeController < ApplicationController
       redirect_to :controller => 'students', :action => 'dashboard', :id => student.id
     elsif response['teacher'] != nil
       session['teacher'] = response['teacher']
-      redirect_to "/teachers/"
+      redirect_to "/teachers/dashboard"
     else
       flash[:notice] = "Your username/password was wrong"
       redirect_to :back

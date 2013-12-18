@@ -7,9 +7,17 @@ class ApplicationController < ActionController::Base
   
   helper_method :current_student, :is_student, :is_teacher, 
     :auth_students_only, :auth_teachers_only, :auth_students_and_teachers_only
-
+  
+  # TODO replace authentication with framework like Devise gem
+  
   def current_student
-    @current_student ||= Student.find_by(id: session['student'][:id])
+  	if is_student
+      @current_student ||= Student.find_by(id: session['student'][:id])
+    elsif is_teacher
+      student_id ||= params[:id]
+      student_id ||= params[:student_id]
+      @current_student ||= Student.find_by(id: student_id)
+    end
   end
   
   def is_student

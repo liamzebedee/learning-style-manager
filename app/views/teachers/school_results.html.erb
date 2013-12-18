@@ -1,14 +1,3 @@
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="page-navbar">
-  <a href="/teacher"><h1 class="navbar-brand">Learning Styles</h1></a>
-
-  <ul class="nav navbar-nav">
-    <li class="active"><a href="#intro">Introduction</a></li>
-    <li><a href="#year-10">Year 10</a></li>
-    <li><a href="#year-11">Year 11</a></li>
-    <li><a href="#year-12">Year 12</a></li>
-  </ul>
-</nav>
-
 <section id="intro">
   <div class="jumbotron">
     <div class="container">
@@ -22,7 +11,33 @@
   </div>
 </section>
 
-<% (@current_cohort..@last_cohort).reverse_each.with_index do |cohort, cohort_i| %>
+<div class="btn-group btn-group-justified">
+	<a href="#year-10" class="btn btn-default" role="button">Year 10</a>
+	<a href="#year-11" class="btn btn-default" role="button">Year 11</a>
+	<a href="#year-12" class="btn btn-default" role="button">Year 12</a>
+</div>
+
+<% if false %>
+<ul class="list-inline clearfix">
+	<% (@year12_cohort..@year10_cohort).reverse_each.with_index do |cohort, cohort_i| %>
+	<% year = 12 - (cohort - Time.now.year) %>
+	<li class="pull-left">
+		<h3>Year <%= year %></h3>
+		<div class="clearfix">
+		<canvas class="star-piechart" width=200 height=200 
+			data-spatial=<%= (@star_ratios_for_cohort[year][:spatial]*100).floor %>
+			data-tactile=<%= (@star_ratios_for_cohort[year][:spatial]*100).floor %>
+			data-auditory=<%= (@star_ratios_for_cohort[year][:spatial]*100).floor %>
+			data-reading=<%= (@star_ratios_for_cohort[year][:spatial]*100).floor %>></canvas>
+		</div>
+	</li>
+	<% end %>
+</ul>
+<% end %>
+
+
+
+<% (@year12_cohort..@year10_cohort).reverse_each.with_index do |cohort, cohort_i| %>
 <% year = 12 - (cohort - Time.now.year) %>
 <section id="year-<%= year %>">
 <h2>Year <%= year %></h2>
@@ -30,42 +45,68 @@
   <thead><tr>
     <th data-defaultsort="desc">Name</th>
     <th>ID</th>
-    <th>DOL5</th>
-    <th>GMI</th>
-    <th>STAR</th>
-    <th>AusIdentities</th>
+    <th><abbr title="Habits of Mind (5 Dimensions of Learning)">DOL5</abbr></th>
+    <th><abbr title="Gardner's Multiple Intelligences">GMIT</abbr></th>
+    <th><abbr title="Spatial Tactile Auditory Reading">STAR</abbr></th>
+    <th>AusIdentity</th>
   </tr>
   </thead>
   <tbody>
   <% Student.where(year: cohort).each do |student| %>
-    <% next if student.learning_test_result.nil? %>
     <tr>
-    <td><%= student.name %></td>
+    
+    
+    <td><%= link_to student.name, student_path(student) %></td>
+    
+    
     <td><%= student.eq_id %></td>
-    <div class="modal fade" id="<%= student.eq_id %>-dol-habits" tabindex="-1" role="dialog"><div class="modal-dialog"><div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">DOL5 Habits for <strong><%= student.name %></strong></h4>
-      </div>
-      <div class="modal-body">
-        <% student.learning_test_result.dol_test_result.habits_ranked.values.each_with_index do |habits, category_i| %>
-          <h3><%= DolTestResult::OPTIONS[category_i] %></h3>
-          <ul>
-            <% habits.each do |habit_i| %>
-            <li>#<%= habit_i.to_i + 1 %> — <%= DolTestResult::QUESTIONS[habit_i.to_i] %></li>
-            <% end %>
-          </ul>
-        <% end %>
-      </div>
-    </div></div></div>
-    <td><a data-toggle="modal" href="#<%= student.eq_id %>-dol-habits">View habits of mind</a></td>
-    <td><%= student.learning_test_result.gmi_test_result.top_intelligences.join ', ' %></td>
-    <td>
-      <p><% student.learning_test_result.star_test_result.star_ranked.each do |letter, percentage| %>
-      <abbr title="<%= letter.capitalize %>"><%= (percentage * 100).floor %>%</abbr>
-      <% end %></p>
-    </td>
-    <td><%= student.learning_test_result.aui_test_result.animal_name %></td>
+    
+    
+    <% if student.dol5_test_results.any? %>
+		<div class="modal fade" id="<%= student.eq_id %>-dol-habits" tabindex="-1" role="dialog"><div class="modal-dialog"><div class="modal-content">
+		  <div class="modal-header">
+		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		    <h4 class="modal-title">DOL5 Habits for <strong><%= student.name %></strong></h4>
+		  </div>
+		  <div class="modal-body">
+		    <% student.latest_dol5_test_result.habits_ranked.values.each_with_index do |habits, category_i| %>
+				<h3><%= Dol5TestResult::OPTIONS[category_i] %></h3>
+				<ul>
+				<% habits.each do |habit_i| %>
+				<li>#<%= habit_i.to_i + 1 %> — <%= Dol5TestResult::QUESTIONS[habit_i.to_i] %></li>
+				<% end %>
+				</ul>
+			<% end %>
+		  </div>
+		</div></div></div>
+		<td><a data-toggle="modal" href="#<%= student.eq_id %>-dol-habits">View habits of mind</a></td>
+    <% else %>
+    	<td><span class="text-warning">Unavailable</span></td>
+    <% end %>
+    
+    
+    <% if student.gmit_test_results.any? %>
+    	<td><%= student.latest_gmit_test_result.top_intelligences.join ', ' %></td>
+    <% else %>
+    	<td><span class="text-warning">Unavailable</span></td>
+    <% end %>
+    
+    
+    <% if student.star_test_results.any? %>
+		<td>
+		  <p><% student.latest_star_test_result.star_ranked.each do |letter, percentage| %>
+		  <abbr title="<%= letter.capitalize %>"><%= (percentage * 100).floor %>%</abbr>
+		  <% end %></p>
+		</td>
+    <% else %>
+    	<td><span class="text-warning">Unavailable</span></td>
+    <% end %>
+    
+    <% if student.ausidentities_test_results.any? %>
+    	<td><%= student.latest_ausidentities_test_result.animal_name %></td>
+    <% else %>
+    	<td><span class="text-warning">Unavailable</span></td>
+    <% end %>
   <% end %>
   </tbody>
 </table>

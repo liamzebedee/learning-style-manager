@@ -9,7 +9,7 @@ LearningStyleManager::Application.routes.draw do
     end
   end
   
-  get "teachers/", to: "teacher#index"
+  get "teachers/dashboard", to: "teacher#dashboard"
   get "teachers/school-results", to: "teacher#school_results"
   
   root "home#index"

@@ -1,15 +1,17 @@
 <h1 class="page-header"><%= current_student.name %>'s results</h1>
 
-<% if is_teacher and current_student.has_been_fully_tested %>
 <section id="overview">
   <div class="jumbotron">
     <div class="container">
       <h1>Overview</h1>
-      <p>This student is mainly a <strong><%= current_student.latest_star_test_result.main_style %> learner</strong>.</p>
+      <% if is_teacher and current_student.has_been_fully_tested %>
+      	<p>This student is mainly a <strong><%= current_student.latest_star_test_result.main_style %> learner</strong>.</p>
+      <% elsif is_teacher and !current_student.has_been_fully_tested %>
+      	<p class="text-warning">This student hasn't completed all the tests, so we can't generate an overview.</p>
+      <% end %>
     </div>
   </div>
 </section>
-<% end %>
 
 <section id="results-dol" class="results">
 	<h2>Dimensions of Learning <small><a href="/docs/DOL5-Summary.pdf">Learn more</a></small></h2>
