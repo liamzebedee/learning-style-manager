@@ -140,7 +140,13 @@ class StarTestResult < ActiveRecord::Base
        "I give them a hug or a handshake",
        "I say \"it's great to hear your voice!\"",
        "I send an email or text to say hello"]]]
-
+  DESCRIPTIONS = {
+  	:spatial => "seeing and charting",
+  	:tactile => "touching and doing",
+  	:reading => "listening and speaking",
+  	:auditory => "reading and writing"
+  }
+  
   serialize :answers, Array
   serialize :star_tally, Hash
   # { :spatial => 0.4, :tactile => 0.1, :auditory => 0.25, :reading => 0.25 }

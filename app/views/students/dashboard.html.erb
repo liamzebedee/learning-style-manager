@@ -5,15 +5,12 @@
 		<% if current_student.star_test_results.any? %>
 		<section id="results-star">
 		<p>You are mainly a <strong><%= current_student.latest_star_test_result.main_style %> learner</strong>. Below you can see how much your learning style tends to those of the <%= link_to "STAR framework", "/docs/STAR-Overview.pdf" %></a>.</p>
-		<ul id="star-graphic">
-		<% current_student.latest_star_test_result.star_ranked.each do |intelligence, percentage| %>
-		<li>
-		  <h3><%= intelligence.to_s.capitalize %></h3>
-		  <h4><%= (percentage * 100).floor %>%</h4>
-		</li>
-		<% end %>
-		</ul>
-		
+		<% star_ranked = current_student.latest_star_test_result.star_ranked %>
+		<canvas class="star-piechart" width=200 height=200 
+			data-spatial=<%= (star_ranked[:spatial]*100).floor %>
+			data-tactile=<%= (star_ranked[:tactile]*100).floor %>
+			data-auditory=<%= (star_ranked[:auditory]*100).floor %>
+			data-reading=<%= (star_ranked[:reading]*100).floor %>></canvas>
 		<p>For a more detailed overview, see your <%= link_to "results for all tests", student_path(current_student) %>.</p>
 		
 		</section>
