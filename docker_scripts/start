@@ -1,0 +1,3 @@
+#!/bin/bash
+cd /rails
+rails server -e development $* -p 3000

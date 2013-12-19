@@ -1,0 +1,10 @@
+#!/bin/bash
+set -e
+cd $HOME
+
+bundle config path "$HOME/bundler"
+bundle install
+
+rake db:setup
+rake db:migrate
+rake secret

@@ -10,7 +10,7 @@ A Ruby on Rails web application to manage student learning styles (DOL, STAR, Ga
  3. Run `rake db:setup`
  4. **IMPORTANT:** Run `rake secret` to generate a new secret key.
  5. Set the authentication server URL `AUTH_SERVER_URL` in `config/application.rb`.
- 6. Run `rails server -e production` and access at `127.0.0.1:3000` — run in **production** mode only. If you want to host on port 80 (recommended), then run `rvmsudo rails server -p80`.
+ 6. Run `rails server -e development -p 3000` and access at `127.0.0.1:3000`.
  
 # Production (Docker)
 
