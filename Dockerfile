@@ -1,6 +1,15 @@
 # -*- sh -*-
 FROM ubuntu
 
+# Don't ask for confirm
+ENV DEBIAN_FRONTEND noninteractive
+
+# So we have add-apt-repository available
+RUN apt-get -qy install software-properties-common python-software-properties
+
+RUN add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu precise main universe restricted multiverse"
+RUN apt-get update
+
 # development tools
 RUN apt-get -qy install git nano
 
@@ -21,11 +30,12 @@ ADD rails/ /rails
 
 # copy and execute the setup script
 # this will run bundler, setup the database, etc.
-ADD scripts/setup /setup
+ADD docker_scripts/setup /setup
+RUN apt-get -qy install rake
 RUN su rails -c /setup
 
 # copy the start script
-ADD scripts/start /start
+ADD docker_scripts/start /start
 
 EXPOSE 3000
 USER rails

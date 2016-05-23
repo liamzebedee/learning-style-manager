@@ -4,7 +4,9 @@
 		<h1>Welcome <%= current_student.first_name %></h1>
 		<% if current_student.star_test_results.any? %>
 		<section id="results-star">
-		<p>You are mainly a <strong><%= current_student.latest_star_test_result.main_style %> learner</strong>. Below you can see how much your learning style tends to those of the <%= link_to "STAR framework", "/docs/STAR-Overview.pdf" %></a>.</p>
+		<% star = current_student.latest_star_test_result %>
+		<p>You are mainly a <strong><%= star.main_style %> learner</strong>. You learn best through <%= StarTestResult::DESCRIPTIONS[star.star_ranked.keys[0]] %>.</p>
+		<p>Below you can see how much your learning style tends to those of the <%= link_to "STAR framework", "/docs/STAR-Overview.pdf" %></a>.</p>
 		<% star_ranked = current_student.latest_star_test_result.star_ranked %>
 		<canvas class="star-piechart" width=200 height=200 
 			data-spatial=<%= (star_ranked[:spatial]*100).floor %>
